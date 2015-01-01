@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fadingEdge="vertical"
+        android:scrollbars="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/content_padding_bottom"
+                android:paddingLeft="@dimen/content_padding_left"
+                android:paddingRight="@dimen/content_padding_right"
+                android:paddingTop="@dimen/content_padding_top" >
+
+                <ImageView
+                    android:layout_width="@dimen/content_image_width"
+                    android:layout_height="@dimen/content_image_height"
+                    android:layout_margin="@dimen/content_image_margin"
+                    android:background="@drawable/bg_border"
+                    android:gravity="center"
+                    android:padding="2dip"
+                    android:src="@drawable/jp_qq" />
+
+                <TextView
+                    android:id="@+id/connect_qq_detail_name"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:text="@string/connect_qq_name"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/business_list_first" />
+
+                <Button
+                    android:id="@+id/connect_qq_button"
+                    android:layout_width="90dip"
+                    android:layout_height="30dip"
+                    android:layout_marginLeft="8dip"
+                    android:layout_marginRight="10dip"
+                    android:background="@drawable/important_btn_bg"
+                    android:text="@string/connect_submit_name"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/home_button_text_color"
+                    android:visibility="visible" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:src="@color/content_split" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/content_padding_bottom"
+                android:paddingLeft="@dimen/content_padding_left"
+                android:paddingRight="@dimen/content_padding_right"
+                android:paddingTop="@dimen/content_padding_top" >
+
+                <ImageView
+                    android:layout_width="@dimen/content_image_width"
+                    android:layout_height="@dimen/content_image_height"
+                    android:layout_margin="@dimen/content_image_margin"
+                    android:background="@drawable/bg_border"
+                    android:gravity="center"
+                    android:padding="2dip"
+                    android:src="@drawable/jp_weibo" />
+
+                <TextView
+                    android:id="@+id/connect_weibo_detail_name"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:text="@string/connect_weibo_name"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/business_list_first" />
+
+                <Button
+                    android:id="@+id/connect_weibo_button"
+                    android:layout_width="90dip"
+                    android:layout_height="30dip"
+                    android:layout_marginLeft="8dip"
+                    android:layout_marginRight="10dip"
+                    android:background="@drawable/important_btn_bg"
+                    android:text="@string/connect_submit_name"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/home_button_text_color"
+                    android:visibility="visible" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:src="@color/content_split" />
+
+            <com.gez.cookery.jiaoshou.widget.ColumnInputText
+                android:id="@+id/my_location_1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                edit_hint="常用地址"
+                imagesrc="@drawable/rp_address"
+                button_back="@drawable/ic_delete" />
+
+            <com.gez.cookery.jiaoshou.widget.ColumnInputText
+                android:id="@+id/my_location_2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                edit_hint="常用地址2"
+                imagesrc="@drawable/rp_address"
+                button_back="@drawable/ic_delete" />
+
+            <com.gez.cookery.jiaoshou.widget.ColumnInputText
+                android:id="@+id/my_location_3"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                edit_hint="常用地址3"
+                imagesrc="@drawable/rp_address"
+                button_back="@drawable/ic_delete" />
+
+            <com.gez.cookery.jiaoshou.widget.ColumnInputText
+                android:id="@+id/my_location_4"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                edit_hint="常用地址4"
+                imagesrc="@drawable/rp_address"
+                button_back="@drawable/ic_delete" />
+            
+            <com.gez.cookery.jiaoshou.widget.ColumnInputText
+                android:id="@+id/my_location_5"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                edit_hint="常用地址5"
+                imagesrc="@drawable/rp_address"
+                button_back="@drawable/ic_delete" />
+
+            <com.gez.cookery.jiaoshou.widget.ColumnInputText
+                android:id="@+id/my_mobile_number_1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                edit_hint="常用电话"
+                imagesrc="@drawable/rp_phone"
+                button_back="@drawable/ic_delete" />
+
+            <com.gez.cookery.jiaoshou.widget.ColumnInputText
+                android:id="@+id/my_mobile_number_2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                edit_hint="常用电话2"
+                imagesrc="@drawable/rp_phone"
+                button_back="@drawable/ic_delete" />
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/submit_account_info_button_ok"
+        android:layout_width="fill_parent"
+        android:layout_height="40dip"
+        android:background="@drawable/important_btn_bg"
+        android:text="@string/submit_account_info_ok"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="@color/home_button_text_color" />
+
+</LinearLayout>

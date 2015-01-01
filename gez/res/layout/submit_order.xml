@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:fadingEdge="vertical"
+        android:scrollbars="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <com.gez.cookery.jiaoshou.widget.ColumnInputText
+                android:id="@+id/submit_order_address"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                button_back="@drawable/ap_address"
+                edit_hint="送餐地址"
+                imagesrc="@drawable/op_address" />
+
+            <com.gez.cookery.jiaoshou.widget.ColumnInputText
+                android:id="@+id/submit_order_phone"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                button_back="@drawable/ap_phone"
+                edit_hint="联系电话"
+                imagesrc="@drawable/op_phone" />
+
+            <com.gez.cookery.jiaoshou.widget.ColumnText
+                android:id="@+id/order_sum_price"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                imagesrc="@drawable/op_price" />
+
+            <com.gez.cookery.jiaoshou.widget.ColumnInputText
+                android:id="@+id/submit_order_time"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                button_back="@drawable/ap_time"
+                edit_hint="送达时间"
+                imagesrc="@drawable/op_time" />
+
+            <com.gez.cookery.jiaoshou.widget.ColumnInputText
+                android:id="@+id/submit_order_remark"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                edit_hint="备注"
+                imagesrc="@drawable/op_messenge" />
+
+            <com.gez.cookery.jiaoshou.widget.ColumnSwitchText
+                android:id="@+id/submit_order_duojf"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                imagesrc="@drawable/op_meal_increase"
+                textOff="否"
+                textOn="是" />
+
+            <com.gez.cookery.jiaoshou.widget.ColumnSwitchText
+                android:id="@+id/submit_order_shaojf"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                imagesrc="@drawable/op_meal_reduce"
+                textOff="否"
+                textOn="是" />
+
+            <com.gez.cookery.jiaoshou.widget.ColumnSwitchText
+                android:id="@+id/submit_order_duofl"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                imagesrc="@drawable/op_peppery_increase"
+                textOff="否"
+                textOn="是" />
+
+            <com.gez.cookery.jiaoshou.widget.ColumnSwitchText
+                android:id="@+id/submit_order_shaofl"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                imagesrc="@drawable/op_peppery_none"
+                textOff="否"
+                textOn="是" />
+
+            <com.gez.cookery.jiaoshou.widget.ColumnSwitchText
+                android:id="@+id/submit_order_bufc"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                imagesrc="@drawable/op_shallot_none"
+                textOff="否"
+                textOn="是" />
+
+            <com.gez.cookery.jiaoshou.widget.ColumnSwitchText
+                android:id="@+id/submit_order_bufs"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                imagesrc="@drawable/op_garlic_none"
+                textOff="否"
+                textOn="是" />
+
+            <com.gez.cookery.jiaoshou.widget.ColumnSwitchText
+                android:id="@+id/submit_order_bufj"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                imagesrc="@drawable/op_ginger_none"
+                textOff="否"
+                textOn="是" />
+
+            <com.gez.cookery.jiaoshou.widget.ColumnSwitchText
+                android:id="@+id/submit_order_buykz"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                imagesrc="@drawable/op_chopsticks_none"
+                textOff="否"
+                textOn="是" />
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/submit_order_button_ok"
+        android:layout_width="fill_parent"
+        android:layout_height="40dip"
+        android:background="@drawable/important_btn_bg"
+        android:text="@string/submit_button_ok"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="@color/home_button_text_color" />
+
+</LinearLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
+	<classpathentry kind="lib" path="libs/android-support-v4.jar"/>
+	<classpathentry kind="lib" path="libs/baidumapapi_v2_4_0.jar"/>
+	<classpathentry kind="lib" path="libs/gson-2.2.4.jar"/>
+	<classpathentry kind="lib" path="libs/locSDK_4.1.jar"/>
+	<classpathentry kind="lib" path="libs/open_sdk.jar"/>
+	<classpathentry kind="lib" path="libs/mta-sdk-1.0.0.jar"/>
+	<classpathentry kind="lib" path="libs/achartengine-1.1.0.jar"/>
+	<classpathentry exported="true" kind="src" path="/WeiboSDK"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/abs-library"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/sliding-library"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="gen"/>
+	<classpathentry kind="output" path="bin/classes"/>
+</classpath>

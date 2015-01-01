@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- 三种主色 -->
+    <color name="main_color_first">#1891ca</color>
+    <color name="main_color_second">#000000</color>
+    <color name="main_button_back_pressed">#ff3993cf</color>
+    
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="white1">#faebd7</color>
+    <color name="gray0">#dfdfdf</color>
+    <color name="gray1">#bfbfbf</color>
+    <color name="gray2">#808080</color>
+    <color name="gray3">#505050</color>
+    <color name="gray4">#303030</color>
+    <color name="blue1">#6699ff</color>
+    <color name="blue2">#3366cc</color>
+    <color name="blue3">#003399</color>
+    <color name="green1">#99cc33</color>
+    <color name="green2">#00cc00</color>
+    <color name="green3">#ff6600</color>
+    <color name="orange1">#ffcc00</color>
+    <color name="orange2">#ff9900</color>
+    <color name="orange3">#ff6600</color>
+    <color name="red">#cc0000</color>
+    <color name="white_50_transparent">#80ffffff</color>
+    <color name="white_40_transparent">#60ffffff</color>
+    <color name="black_50_transparent">#80000000</color>
+    <color name="black_60_transparent">#a0000000</color>
+    <color name="black_80_transparent">#e0000000</color>
+    <color name="black_20_transparent">#30000000</color>
+    <color name="black_30_transparent">#40000000</color>
+    <color name="black_40_transparent">#90000000</color>
+    <color name="black_00_transparent">#00000000</color>
+    <color name="common_background">#f2f2f2</color>
+    <color name="top_left_font_color">#3d3d3d</color>
+    <color name="list_model_hotel_name">#0f0f0f</color>
+    <color name="list_model_hotel_desc">#616161</color>
+    <color name="list_model_hotel_score">#4cb8df</color>
+    <color name="list_model_hotel_price">#e87d14</color>
+    <color name="popup_item_color">#333333</color>
+    <color name="work_day_color">#666666</color>
+    <color name="free_day_color">#e87d14</color>
+    <color name="select_menu_tab_click">#4cb8df</color>
+    <color name="select_menu_tab">#363636</color>
+    <color name="detail_hotel_name">#0f0f0f</color>
+    <color name="detail_hotel_desc">#8b8b8b</color>
+    <color name="dialog_text_color">#454545</color>
+    <color name="dialog_alert_title_color">#e87d14</color>
+    <color name="city_item_background">#e5e5e5</color>
+    <color name="login_star">#e87d14</color>
+    <color name="login_edit_text">#cccccc</color>
+    <color name="silver_gray">#666666</color>
+    <color name="gray_date_color">#bbbbbb</color>
+    <color name="hotel_detail_black">#0f0f0f</color>
+    <color name="hotel_detail_gray1">#818181</color>
+    <color name="hotel_detail_yellow">#e87d14</color>
+    <color name="search_date_gray">#aaaaaa</color>
+    <color name="search_select_gray">#787878</color>
+    <color name="score_progress">#4cb8df</color>
+    
+    
+    <color name="listitem_transparent">#00000000</color>
+    <color name="listitem_black">#ff000000</color>
+    <color name="listitem_white">#ffffffff</color>
+    <color name="listitem_blue">#0e5986</color>
+    <color name="listitem_gray">#ff9da19e</color>
+    <color name="listitem_green">#ffe3ffc6</color>
+    <color name="listitem_greenyellow">#ff87b869</color>
+    <color name="listitem_yellow">#fffaffbf</color>  
+    
+    <color name="blue">#ff3993cf</color>
+    <color name="home_menu_text_color">#FFF</color>
+    <color name="home_menu_split">#ff3b3c42</color>
+    <color name="menu_back">#ff2f3036</color>
+    <color name="home_menu_press_color">#C53A1D</color>
+    <color name="home_menu_main_split">#C53A1D</color>
+    
+    <color name="home_button_text_color">#FFF</color>
+    <color name="home_button_back_color">#181818</color>
+    <color name="home_button_press_color">#323232</color>
+    <color name="home_button_split_color">#3A3A3A</color>
+    
+    <color name="actionbar_back">#C53A1D</color>
+    
+    <color name="bg_border_color">#E5E5E5</color>
+    
+    <color name="business_button_back">#C53A1D</color>
+    <color name="business_list_first">#0f0f0f</color>
+    <color name="business_list_second">#616161</color>
+    <color name="list_back">#fff1f1f1</color>
+    <color name="food_button_price_text">#323232</color>
+    <color name="content_split">#EDEDED</color>
+    
+    <color name="order_cuid">#C53A1D</color>
+    <color name="order_dianp">#C53A1D</color>
+    <color name="order_yidp">#181818</color>
+    <color name="dialog_title">#C53A1D</color>
+    <color name="dialog_split_line">#C53A1D</color>
+    <color name="transparent">#00ff00ff</color>
+    
+    <color name="important_button_back">#C53A1D</color>
+    <color name="important_button_back_press">#ff3993cf</color>
+    
+    <color name="normal_button_back">#323232</color>
+    <color name="normal_button_back_press">#ff3993cf</color>
+    
+    <color name="normal_inverse_button_back">#181818</color>
+    <color name="normal_inverse_button_back_press">#ff3993cf</color>
+</resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <com.gez.cookery.jiaoshou.widget.ColumnText
+        android:id="@+id/the_lowest_price"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        imagesrc="@drawable/rp_threshold"
+        android:visibility="gone" />
+
+    <com.gez.cookery.jiaoshou.widget.ColumnText
+        android:id="@+id/the_delivery_price"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        imagesrc="@drawable/rp_despatch"
+        android:visibility="gone" />
+
+    <ListView
+        android:id="@+id/order_listview"
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1" >
+    </ListView>
+
+    <Button
+        android:id="@+id/order_button_ok"
+        android:layout_width="fill_parent"
+        android:layout_height="40dip"
+        android:background="@drawable/important_btn_bg"
+        android:text="@string/order_button_ok"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="@color/home_button_text_color" />
+
+</LinearLayout>

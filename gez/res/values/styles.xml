@@ -1,0 +1,63 @@
+<resources>
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <style name="Main" parent="android:Theme">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+    </style>
+    
+    <style name="loading_small" parent="@android:style/Widget.ProgressBar.Small">
+		<item name="android:indeterminateDrawable">@anim/loading</item>
+		<item name="android:layout_width">21dip</item> 
+		<item name="android:layout_height">21dip</item>
+		<item name="android:layout_gravity">center_vertical</item>
+	</style>
+    
+    <style name="widget_listview">
+        <item name="android:layout_width">fill_parent</item>
+   		<item name="android:layout_height">fill_parent</item>
+       	<item name="android:layout_weight">1</item>      	
+       	<item name="android:listSelector">@drawable/listview_item_selector</item>
+       	<item name="android:divider">@drawable/listview_divider_line</item>
+       	<item name="android:dividerHeight">1.0dip</item>
+       	<item name="android:fadingEdge">none</item>
+       	<item name="android:scrollingCache">false</item>
+    </style>
+   
+   
+    <style name="Theme.MyTheme" parent="Theme.Sherlock.Light.DarkActionBar">
+	    <item name="actionBarStyle">@style/Theme.MyTheme.ActionBar</item>
+	    <item name="android:actionBarStyle">@style/Theme.MyTheme.ActionBar</item>
+	</style>
+	
+	<style name="Theme.MyTheme.ActionBar" parent="Widget.Sherlock.ActionBar">
+	    <item name="android:background">@color/main_color_first</item>
+	    <item name="background">@color/actionbar_back</item>
+	    <item name="android:height">43dip</item>
+	    <item name="android:titleTextStyle">@style/Theme.MyTheme.ActionBar.TitleTextStyle</item>
+	    <item name="titleTextStyle">@style/Theme.MyTheme.ActionBar.TitleTextStyle</item>
+	</style>
+	
+	<style name="Theme.MyTheme.ActionBar.TitleTextStyle" parent="TextAppearance.Sherlock.Widget.ActionBar.Title">
+	    <item name="android:textColor">@color/white</item>
+	</style>
+    
+    <style name="Theme.MyTheme.Activity.Main" parent="@style/Theme.MyTheme">
+        <item name="android:icon">@android:color/transparent</item>
+        <item name="android:homeAsUpIndicator">@drawable/tp_menu</item>
+        <item name="homeAsUpIndicator">@drawable/tp_menu</item>
+        <item name="icon">@android:color/transparent</item>
+    </style>
+    
+</resources>

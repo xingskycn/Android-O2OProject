@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:scrollbars="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+     
+     <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"   
+        android:background="@drawable/firstpaper_backgroud1"
+        android:orientation="vertical" >
+        
+       <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="20dip" />
+            
+       <at.technikum.mti.fancycoverflow.FancyCoverFlow
+        android:id="@+id/fancyCoverFlow"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />  
+        
+       <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="20dip" />
+      </LinearLayout>
+       
+     
+     <!-- 分界线1 -->
+
+        <LinearLayout
+            android:id="@+id/chart"
+            android:layout_width="match_parent"
+            android:layout_height="308dp"
+            android:orientation="horizontal" >
+
+            <lecho.lib.hellocharts.view.LineChartView
+                android:id="@+id/chart1"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:layout_gravity="center_vertical|center_horizontal|center" 
+                />
+    		
+        </LinearLayout>
+
+        
+        
+     <!-- 分界线2 -->
+     
+   	<LinearLayout
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:background="@drawable/firstpaper_background3"
+           android:orientation="vertical" >
+
+  
+    	<LinearLayout
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="20dip"
+           android:orientation="horizontal" >
+
+            <TextView
+	        android:layout_width="0dip"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"/>
+	        
+       
+            <Button
+              android:id="@+id/first_paper_addtz"
+              android:layout_width="30dip"
+              android:layout_height="30dip"
+              android:gravity="center"
+              android:layout_marginRight="14dip"
+              android:background="@drawable/firstpaper_add"
+              android:focusable="false"
+              android:textAppearance="?android:textAppearanceMedium"
+              android:textColor="@color/home_button_text_color" />
+        		       
+        </LinearLayout>
+
+        
+           <TextView
+	        android:layout_width="fill_parent"
+	        android:layout_height="10dip" />
+
+	       <Gallery
+	          android:id="@+id/first_paper_gallery"
+	          android:layout_width="fill_parent"
+	          android:layout_height="wrap_content"
+	          android:spacing="50dip" />
+ 
+	  </LinearLayout>
+
+	        
+	        
+	      <!-- 分界线3 -->
+  
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >  
+	
+	    <LinearLayout
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="20dip"
+           android:orientation="horizontal" >
+            
+            <TextView
+	        android:layout_width="0dip"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"/>
+             
+       
+            <Button
+                android:id="@+id/first_paper_add"
+                android:layout_width="30dip"
+                android:layout_height="30dip"
+                android:layout_marginRight="14dip"
+                android:gravity="center"
+                android:background="@drawable/firstpaper_add"
+                android:focusable="false"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="@color/home_button_text_color" />
+        		       
+        </LinearLayout>
+
+           <TextView
+	        android:layout_width="fill_parent"
+	        android:layout_height="10dip" />
+           
+            <at.technikum.mti.fancycoverflow.FancyCoverFlow
+                android:id="@+id/fancyCoverFlow1"
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1" />
+          
+             <!-- 
+             <Gallery
+		          android:id="@+id/first_paper_gallery_zhaop"
+		          android:layout_width="fill_parent"
+		          android:layout_height="100dip"
+		          android:spacing="0dip" />
+		             -->
+		              
+               <TextView
+		        android:layout_width="fill_parent"
+		        android:layout_height="20dip" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>

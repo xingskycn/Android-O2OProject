@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/business_list_item_bg"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="2dip">
+
+    <ImageView
+        android:id="@+id/food_item_logo"
+        android:layout_width="40dip"
+        android:layout_height="40dip"
+        android:layout_margin="9dip"
+        android:background="@drawable/bg_border"
+        android:gravity="center"
+        android:padding="2dip" />
+
+    <LinearLayout
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dip"
+        android:paddingBottom="5dip"
+        android:layout_marginTop="5dip"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingRight="3dip" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:minHeight="30dip" >
+
+            <TextView
+                android:id="@+id/food_item_name"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:text="菜品"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="@color/business_list_first" />
+
+<!-- 
+            <TextView
+                android:id="@+id/food_item_count"
+                android:layout_width="20dip"
+                android:layout_height="20dip"
+                android:background="@drawable/text_view_border"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@color/white" />
+                 -->
+                 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="5dip"
+            android:layout_marginTop="5dip"
+            android:orientation="horizontal" >
+
+            <!--
+            <ImageView 
+                android:layout_width="15dip"
+                android:layout_height="15dip"
+                android:src="@drawable/hp_commentgood" />  -->
+          
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dip"
+                android:layout_marginTop="5dip"
+                android:layout_weight="4.67"
+                android:orientation="vertical"
+                android:paddingBottom="5dip"
+                android:paddingRight="3dip" >
+
+                <TextView
+                    android:id="@+id/food_item_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="口味★★★★★"
+                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textColor="@color/business_list_first" />
+
+                <TextView
+                    android:id="@+id/food_item_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="效果★★★★★"
+                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textColor="@color/business_list_first" />
+            </LinearLayout>
+
+            <!--
+            <TextView
+                android:id="@+id/food_item_haop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dip"
+                android:layout_marginRight="5dip"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@color/business_list_second" />
+                         
+            
+            
+            <ImageView 
+                android:layout_width="15dip"
+                android:layout_height="15dip"
+                android:src="@drawable/hp_commentpoor" />
+
+            <TextView
+                android:id="@+id/food_item_chap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dip"
+                android:layout_marginRight="5dip"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@color/business_list_second" />
+            
+            <ImageView 
+                android:layout_width="15dip"
+                android:layout_height="15dip"
+                android:src="@drawable/hp_counter" />
+               
+            <TextView
+                android:id="@+id/food_item_sell_sum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dip"
+                android:layout_marginRight="5dip"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@color/business_list_second" />           
+
+            <TextView
+                android:id="@+id/food_item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="作用"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@color/business_list_first" />
+                 -->
+                 
+                 
+                 
+                 
+                 
+
+            <ImageView
+                android:id="@+id/food_item_jianzi"
+                android:layout_width="21dip"
+                android:layout_height="18dip"
+                android:gravity="center"
+                android:src="@drawable/hp_jianzi" />
+
+            <ImageView
+                android:id="@+id/food_item_jiangkang"
+                android:layout_width="21dip"
+                android:layout_height="18dip"
+                android:layout_marginLeft="2dip"
+                android:gravity="center"
+                android:src="@drawable/hp_jiankang" />
+
+            <ImageView
+                android:id="@+id/food_item_zengji"
+                android:layout_width="21dip"
+                android:layout_height="18dip"
+                android:layout_marginLeft="2dip"
+                android:gravity="center"
+                android:src="@drawable/hp_zengji" />
+
+            <!--
+            <ImageView
+                android:id="@+id/food_item_qingzhen"
+                android:layout_width="18dip"
+                android:layout_height="18dip"
+                android:layout_marginLeft="2dip"
+                android:gravity="center"
+                android:src="@drawable/hp_halal" />
+            
+            
+         
+             <ImageView
+                android:id="@+id/food_item_law1"
+                android:layout_width="18dip"
+                android:layout_height="18dip"
+                android:layout_marginLeft="2dip"
+                android:gravity="center"
+                android:src="@drawable/hp_peppery" />
+             
+             <ImageView
+                android:id="@+id/food_item_law2"
+                android:layout_width="18dip"
+                android:layout_height="18dip"
+                android:layout_marginLeft="2dip"
+                android:gravity="center"
+                android:src="@drawable/hp_peppery" />
+             
+             <ImageView
+                android:id="@+id/food_item_law3"
+                android:layout_width="18dip"
+                android:layout_height="18dip"
+                android:layout_marginLeft="2dip"
+                android:gravity="center"
+                android:src="@drawable/hp_peppery" />
+            -->
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lock_area"
+        android:layout_width="83dip"
+        android:layout_height="fill_parent"
+        android:paddingLeft="2dip"
+        android:paddingRight="0dip"
+        android:gravity="center_vertical"
+        android:clickable="true"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/food_button_price"
+            android:layout_width="70dip"
+            android:layout_height="30dip"
+            android:layout_marginRight="14dip"
+            android:background="@drawable/normal_btn_bg"
+            android:focusable="false"
+            android:text="@string/business_button_pay_text"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/home_button_text_color" />
+    </LinearLayout>
+
+</LinearLayout>
