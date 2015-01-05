@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gez.grill.mapper.TuisMapper" >
+	<!--获取token信息-->
+	<select id="getToken" resultType="com.gez.grill.entity.Yanz" parameterType="String">
+		SELECT 
+			biaos,huoqsj,chixsj 
+		FROM 
+			yanzbs 
+		WHERE 
+			pingtlx=#{leix}
+	</select>
+	
+	<!--更新token信息-->
+	<update id="updateToken" parameterType="com.gez.grill.entity.Yanz">
+		UPDATE
+			yanzbs
+		SET
+			biaos =#{biaos},
+			huoqsj =getdate(),
+			chixsj =#{chixsj}
+		WHERE
+			pingtlx =#{pingtlx}
+	</update>
+</mapper>

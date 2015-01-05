@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gez.grill.mapper.DingdMapper">
+	<!--订单列表-->
+	<select id="getOrdersList" resultType="com.gez.grill.entity.DingdBasic" parameterType="HashMap">
+		SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY dingd.xiadsj DESC) rownum,
+			dingd.id, dingd.bianh, dingd.dingdzt,
+			dingd.dianpzt, dingd.cantbz, dingd.zongfs, 
+			dingd.zongjg
+		FROM
+			dingd
+		WHERE
+			dingd.guk_id =#{gukId,jdbcType=CHAR}
+	) a WHERE <![CDATA[ rownum>#{pageStart} AND rownum<#{pageEnd} ]]>
+	</select>
+	
+	<!--订单所需的餐厅信息-->
+	<select id="getRestaurantBase" resultType="com.gez.grill.entity.CantBasic" parameterType="String">
+		SELECT
+			cant.id, cant.cantmc, cantbstp
+		FROM
+			cant,
+			dingd AS dingd1
+		WHERE
+			dingd1.cant_id =cant.id AND
+			dingd1.id =#{dingdId,jdbcType=CHAR}
+	</select>
+	
+	<!--订单信息-->
+	<select id="getOrderBase" resultType="com.gez.grill.entity.Dingd" parameterType="String">
+		SELECT
+			dingd.gukdh, dingd.gukscdz, dingd.zongjg
+		FROM
+			dingd
+		WHERE
+			dingd.id =#{dingdId,jdbcType=CHAR}
+	</select>
+	
+	<!--单个订单信息-->
+	<select id="getOrderBaseAgain" resultType="com.gez.grill.entity.Dingd" parameterType="String">
+		SELECT
+			dingd.bianh, dingd.gukdh, dingd.gukscdz,
+			CONVERT(varchar, dingd.xiadsj, 120) AS xiadsj, CONVERT(varchar, dingd.quersj, 120) AS quersj, dingd.cant_id AS cantId
+		FROM
+			dingd
+		WHERE
+			dingd.id =#{dingdId,jdbcType=CHAR}
+	</select>
+	
+	<!--查看用户是否绑定-->
+	<select id="isCustomerBind" resultType="String" parameterType="String">
+		SELECT
+    		guk.id
+    	FROM
+    		guk
+    	WHERE
+    		<![CDATA[ (guk.weibm<>'未绑定' OR guk.qqh<>'未绑定') ]]> AND
+		 	guk.id =(SELECT guk_id FROM dingd WHERE id =#{dingdId,jdbcType=CHAR})
+	</select>
+
+	<!--订单详情-->
+	<select id="getOrdersItems" resultType="com.gez.grill.entity.Dingdmx" parameterType="String">
+		SELECT
+			caip1.id AS caipId, caip1.caipmc, caip1.caipbs,
+			dingdmx.fens, dingdmx.danj
+		FROM
+			dingdmx,
+			caip AS caip1
+		WHERE
+			dingdmx.caip_id =caip1.id AND
+			dingdmx.dingd_id =#{dingdId,jdbcType=CHAR}
+	</select>
+	
+	<!--获取当日订单量-->
+	<select id="getOrdersToday" resultType="int" parameterType="String">
+		SELECT
+			COUNT(*)
+		FROM
+			dingd
+		WHERE
+			dingd.cant_id =#{cantId,jdbcType=CHAR} AND
+			DATEDIFF(DAY, dingd.xiadsj, GETDATE()) = 0
+	</select>
+	
+	<!--订单明细-->
+	<insert id="addOrdersItem" parameterType="com.gez.grill.entity.Dingdmx">
+	    INSERT INTO dingdmx (id, fens, danj,
+	    	zongj, jilsj, dingd_id,
+	    	caip_id, cant_id)
+	    VALUES (newid(), #{fens,jdbcType=INTEGER}, #{danj},
+	    	#{zongj}, getdate(), #{dingdId,jdbcType=CHAR},
+	    	#{caipId,jdbcType=CHAR}, #{cantId,jdbcType=CHAR})
+	</insert>
+	
+	<!--订单-->
+	<insert id="addOrder" parameterType="com.gez.grill.entity.Dingd">
+		INSERT INTO dingd (id, bianh, dingdzt, 
+			dianpzt, xiadsj, quersj, 
+			xiacsj, waissj, songdsj, 
+			guidsj, quxsj, dianpsj,
+			gukdh,  gukscdz, gukbz,
+			cantbz, songcsjxz, songcsj,
+			zhiffs, zongfs, zongjg,
+			cuidcs, duojf, shaojf,
+			duofl, shaofl, bufc,
+			bufs, bufj, buykz, 
+			guk_id, cant_id)
+		VALUES (#{id,jdbcType=CHAR}, #{bianh,jdbcType=NCHAR}, #{dingdzt,jdbcType=NCHAR}, 
+			#{dianpzt,jdbcType=NCHAR}, getdate(), #{quersj,jdbcType=TIMESTAMP},
+			#{xiacsj,jdbcType=TIMESTAMP}, #{waissj,jdbcType=TIMESTAMP}, #{songdsj,jdbcType=TIMESTAMP},
+			#{guidsj,jdbcType=TIMESTAMP}, #{quxsj,jdbcType=TIMESTAMP}, #{dianpsj,jdbcType=VARCHAR},
+			#{gukdh,jdbcType=VARCHAR}, #{gukscdz,jdbcType=VARCHAR}, #{gukbz,jdbcType=VARCHAR},
+			#{cantbz,jdbcType=NCHAR}, #{songcsjxz,jdbcType=TIMESTAMP}, #{songcsj,jdbcType=NCHAR},
+			#{zhiffs,jdbcType=INTEGER}, #{zongfs,jdbcType=NUMERIC}, #{zongjg,jdbcType=INTEGER},
+			#{cuidcs,jdbcType=BIT}, #{duojf,jdbcType=BIT}, #{shaojf,jdbcType=BIT},
+			#{duofl,jdbcType=BIT}, #{shaofl,jdbcType=BIT}, #{bufc,jdbcType=BIT},
+			#{bufs,jdbcType=BIT}, #{bufj,jdbcType=BIT}, #{buykz,jdbcType=CHAR},
+			#{gukId,jdbcType=CHAR}, #{cantId,jdbcType=CHAR})
+	</insert>
+	
+	<!--催单-->
+	<insert id="getHurry" parameterType="String">
+	    INSERT INTO cuidjl (cuidsj, dingd_id)
+	    VALUES (getdate(), #{dingdId,jdbcType=CHAR})
+	</insert>
+	
+	<!--主表催单次数+1-->
+	<update id="hurryUp" parameterType="String">
+		UPDATE
+			dingd
+		SET
+			cuidcs =cuidcs+1
+		WHERE
+			id =#{dingdId,jdbcType=CHAR}
+	</update>
+	
+	<!--更新点评状态-->
+	<update id="changeOrderStatus" parameterType="HashMap">
+		UPDATE
+			dingd
+		SET
+			dianpzt =#{dianpzt,jdbcType=CHAR},
+			dianpsj =getdate()
+		WHERE
+			id =#{dingdId,jdbcType=CHAR}
+	</update>
+</mapper>

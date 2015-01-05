@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gez.grill.mapper.ShouyMapper" >
+	<!--套餐列表-->
+	<select id="getShouyBasicList" resultType="com.gez.grill.entity.ShouyBasic" parameterType="String">
+		select top 1
+			  convert(varchar(100),kaissy,120) as kaissy,
+		      convert(varchar(100),jiessy,120) as jiessy,
+		      a.id as dingd_id,
+			  b.caip_id as caip_id
+		from 
+			  dingd a,dingdmx b
+		where 
+			  a.id=b.dingd_id 
+		      and b.dingd_id=(
+				  select 
+					   top 1 id 
+				  from 
+					   dingd 
+				  where
+					   dingdzt=5 
+		               and guk_id=#{guk_id}
+		          order by 
+					   songdsj desc 
+		      )
+		order by
+			  kaissy desc
+	</select>	
+	
+	<!--套餐列表-->
+	<select id="gettaocmxList" resultType="com.gez.grill.entity.Taocmx" parameterType="String">
+		select * from taocmx 
+        where taocmx.caip_id in 
+ 		(
+ 			select dingdmx.caip_id from dingdmx 
+			where dingdmx.dingd_id in 
+				(select top 1 dingd.id from dingd 
+				 where guk_id=#{value} and dingdzt=5
+ 				 order by songdsj desc
+				)
+		)
+		order by paix asc
+	</select>
+	
+	<!--顾客体重列表-->
+	<select id="getguktzList" resultType="com.gez.grill.entity.Guktz" parameterType="String">
+		select 
+			    id,
+			    convert(varchar(100),riq,120) as riq,
+			    zhuangt,
+			    tiz,
+			    chaz,
+			    baifb,
+			    guk_id
+	    from  
+	    		guktz
+		where
+		        guktz.guk_id=#{value}
+		order by 
+   			    riq asc
+	</select>
+	
+	<!--顾客相册列表-->
+	<select id="getGukxcList" resultType="com.gez.grill.entity.Gukxc" parameterType="String">
+		select 
+				id,
+				convert(varchar(100),riq,120) as riq,
+				zhaop,
+				guk_id
+		from
+			 	gukxc 
+		where 
+				gukxc.guk_id=#{value}
+		order by 
+				riq asc
+	</select>
+
+	<!--顾客上次体重-->
+	<select id="getLastguktz" resultType="String" parameterType="HashMap">
+		select 
+				top 1 tiz
+		from
+			 	guktz 
+		where 
+				<![CDATA[guktz.riq<#{riq}]]>
+				and guktz.guk_id=#{guk_id}
+				
+		order by 
+				riq desc
+	</select>
+	
+	<!--顾客体重总人数-->
+	<select id="getNumberOfGuktz" resultType="int" parameterType="HashMap">
+		select 
+			count(*) 
+		from
+			guktz
+		where 
+			convert(varchar(100),riq,111)=convert(varchar(100),dateadd(day,-1,#{riq}),111)
+			and <![CDATA[guktz.guk_id<>#{guk_id}]]>
+			 
+
+	</select>
+	
+	<!--顾客体重击败人数-->
+	<select id="getBeatNumberOfGuktz" resultType="int" parameterType="HashMap">
+		select 
+			count(*) 
+		from
+			guktz
+		where 
+			convert(varchar(100),riq,111)=convert(varchar(100),dateadd(day,-1,#{riq}),111)
+			and <![CDATA[guktz.chaz>#{chaz}]]>
+			and <![CDATA[guktz.guk_id<>#{guk_id}]]>
+			
+	</select>
+		
+	<!--插入顾客体重-->
+	<insert id="insertGuktz" parameterType="com.gez.grill.entity.Guktz">
+		insert into guktz 
+		values(newid(),#{riq,jdbcType=TIMESTAMP},#{zhuangt},#{tiz},#{chaz},#{baifb},#{guk_id})
+	</insert>
+	
+	<!--插入顾客相册-->
+	<insert id="insertGukxc" parameterType="com.gez.grill.entity.Gukxc">
+		insert into gukxc 
+		values(newid(),#{riq,jdbcType=TIMESTAMP},#{zhaop},#{guk_id})
+	</insert>
+	
+
+</mapper>

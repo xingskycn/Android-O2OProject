@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gez.grill.mapper.CaipplMapper" >
+	<!--菜品评论-->
+	<select id="getCommentForDishes" resultType="com.gez.grill.entity.Pingl" parameterType="HashMap">
+		SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY caippl.pinglsj DESC) rownum,
+			caippl.id, guk1.zhangh, CASE WHEN (guk1.weibm='未绑定' OR guk1.weibm='' OR guk1.weibm=null) THEN 0 ELSE 1 END AS bindWeib, 
+			CASE WHEN (guk1.qqh='未绑定' OR guk1.qqh='' OR guk1.qqh=null) THEN 0 ELSE 1 END AS bindQq, guk1.zongdccs, guk1.zongdcfs,
+			guk1.zongdcje, caippl.pingj, caippl.pinglsj,
+			caippl.pinglnr
+		FROM
+			caippl,
+			caip AS caip1,
+			guk AS guk1
+		WHERE
+			(caippl.caip_id =caip1.id AND 
+			caippl.guk_id =guk1.id AND
+			caippl.shifpb =0 AND
+			caip1.id =#{caipId,jdbcType=CHAR})
+		) a WHERE <![CDATA[ rownum>#{pageStart} AND rownum<#{pageEnd} ]]>
+	</select>
+	
+	<!--评价菜品-->
+	<insert id="addCommentsForDishes" parameterType="com.gez.grill.entity.Caippl">
+	    INSERT INTO caippl (id, pinglsj, pinglnr,
+	    	pingj, shifpb, cant_id,
+	    	caip_id, guk_id)
+	    VALUES (newid(), getdate(), #{pinglnr},
+	    	#{pingj,jdbcType=BOOLEAN}, 0, #{cantId,jdbcType=CHAR},
+	    	#{caipId,jdbcType=CHAR}, #{gukId,jdbcType=CHAR})
+	</insert>
+	
+	<!--好评-->
+	<update id="addGoodComments" parameterType="String">
+	    UPDATE
+	    	caip
+	    SET
+	    	pinglts =pinglts+1, pingjzcs =pingjzcs+1, haopcs =haopcs+1
+	    WHERE
+	    	id=#{caipId,jdbcType=CHAR}
+	</update>
+	
+	<!--差评-->
+	<update id="addBadComments" parameterType="String">
+	    UPDATE
+	    	caip
+	    SET
+	    	pinglts =pinglts+1, pingjzcs =pingjzcs+1, chapcs =chapcs+1
+	    WHERE
+	    	id=#{caipId,jdbcType=CHAR}
+	</update>
+</mapper>

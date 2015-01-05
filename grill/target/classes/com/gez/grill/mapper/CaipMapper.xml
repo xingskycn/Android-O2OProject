@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gez.grill.mapper.CaipMapper" >
+	
+	<!--套餐明细-->
+	<select id="getDishesDetailList" resultType="com.gez.grill.entity.Taocmx" parameterType="HashMap">
+		SELECT 
+			id,
+			tians,
+			shid,
+			peiz,
+			tup,
+			paix,
+			caip_id			
+		FROM
+			taocmx
+		WHERE
+			 caip_id=#{caip_id}
+		order by
+		     paix asc
+	</select>
+	
+	<!--菜品列表-->
+	<select id="getDishesList" resultType="com.gez.grill.entity.CaipBasic" parameterType="HashMap">
+		SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY caip.paix ASC) rownum,
+			caip.id, caip.caipmc, caip.caipzt,
+			caip.caiplx, caip.jiag, caip.zhaop,
+			caip.tej, caip.xinc, caip.law,
+			caip.qingz, caip.paix, caip.yuesfs,
+			caip.caipbs, caip.haopcs, caip.chapcs
+		FROM
+			caip,
+			cant AS cant1
+		WHERE
+			(cant1.id =caip.cant_id AND
+			cant1.id =#{cantId,jdbcType=CHAR} AND
+			caip.caipzt ='1'
+		)) a WHERE <![CDATA[ rownum>#{pageStart} AND rownum<#{pageEnd} ]]> 
+	</select>
+	
+	<!--特色菜品列表-->
+	<select id="getSpecialDishesList" resultType="com.gez.grill.entity.CaipBasic" parameterType="HashMap">
+		SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY caip.paix ASC) rownum,
+			caip.id, caip.caipmc, caip.caipzt,
+			caip.caiplx, caip.jiag, caip.zhaop,
+			caip.tej, caip.xinc, caip.law,
+			caip.qingz, caip.paix, caip.yuesfs,
+			caip.caipbs, caip.haopcs, caip.chapcs
+		FROM
+			caip,
+			cant AS cant1
+		WHERE
+			(caip.zhaop =1 OR caip.xinc =1 OR caip.qingz =1 OR caip.tej =1) AND
+			cant1.id =caip.cant_id AND
+			cant1.id =#{cantId,jdbcType=CHAR} AND
+			caip.caipzt ='1'
+		) b WHERE <![CDATA[ rownum>#{pageStart} AND rownum<#{pageEnd} ]]> 
+	</select>
+	
+	<!--菜品详情列表-->
+	<select id="getDishesDetail" resultType="Caipxq" parameterType="HashMap">
+		SELECT
+			caip.id, caip.caipmc, caip.caipzt,
+			caip.caiplx, caip.jiag, caip.jianj,
+			caip.zhaop, caip.tej, caip.xinc,
+			caip.law, caip.qingz, caip.paix,
+			caip.yuesfs, caip.caipbs, caip.caipzp1,
+			caip.caipzp2, caip.caipzp3, caip.caipzp4,
+			caip.caipzp5, caip.caipzp6, caip.caipzp7,
+			caip.caipzp8, caip.caipzp9, caip.haopcs,
+			caip.chapcs,
+			(SELECT
+				COUNT(*)
+			FROM
+				caipsc
+			WHERE
+				caip_id =#{caipId,jdbcType=CHAR} AND
+				guk_id =#{gukId,jdbcType=CHAR}) AS favorite
+		FROM
+			caip
+		WHERE
+			caip.id =#{caipId,jdbcType=CHAR}
+	</select>
+	
+	<!--收藏的菜品-->
+	<select id="getMyFavoriteDishes" resultType="CaipBasic" parameterType="HashMap">
+		SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY caipsc1.shoucsj DESC) rownum,
+			caip.id, caip.caipmc, caip.caipzt,
+			caip.caiplx, caip.jiag, caip.zhaop,
+			caip.tej, caip.xinc, caip.law,
+			caip.qingz, caip.paix, caip.yuesfs,
+			caip.caipbs, caip.haopcs, caip.chapcs
+		FROM
+			caip,
+			caipsc AS caipsc1
+		WHERE
+			(caipsc1.caip_id =caip.id AND
+			caip.cant_id =#{cantId,jdbcType=CHAR} AND
+			caipsc1.guk_id =#{gukId,jdbcType=CHAR} AND
+			caip.caipzt ='1')
+		) c WHERE <![CDATA[ rownum>#{pageStart} AND rownum<#{pageEnd} ]]> 
+	</select>
+	
+	<!--判断用户是否已经收藏了该菜品-->
+	<select id="isDishesCollected" resultType="int" parameterType="HashMap">
+    	SELECT
+    		COUNT(*)
+    	FROM
+    		caipsc
+    	WHERE
+    		caipsc.caip_id =#{caipId,jdbcType=CHAR} AND
+    		caipsc.guk_id =#{gukId,jdbcType=CHAR}
+	</select>
+	
+	<!--获取菜名-->
+	<select id="getDishesName" resultType="String" parameterType="List">
+		<if test="list.size() > 0">
+		SELECT 
+			caipmc
+		FROM
+			caip
+		WHERE
+			id IN 
+			<foreach collection="list" item="id" open="(" separator="," close=")">#{id}</foreach>
+		</if>
+	</select>
+  
+	<!--收藏菜品-->
+	<insert id="collectDishes" parameterType="com.gez.grill.entity.Caipsc">
+	    INSERT INTO caipsc (shoucsj, caip_id, guk_id)
+	    VALUES (getdate(), #{caipId,jdbcType=CHAR}, #{gukId,jdbcType=CHAR})
+	</insert>
+	
+	<!--菜品信息更新-->
+	<update id="updateDishData" parameterType="com.gez.grill.entity.Dingdmx">
+		UPDATE
+			caip
+		SET
+			yuesfs =yuesfs+#{fens},		
+			diandcs =diandcs+1
+		WHERE
+			id =#{caipId,jdbcType=CHAR}
+	</update>
+</mapper>

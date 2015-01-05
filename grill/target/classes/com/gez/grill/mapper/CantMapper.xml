@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gez.grill.mapper.CantMapper" >	
+	<!--餐厅列表-->
+	<select id="getRestaurantList" resultType="com.gez.grill.entity.CantBasic" parameterType="HashMap">
+		SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY cant.cantzt ASC, cant.id) rownum,
+			cant.id, cant.cantmc, cant.cantzt,
+			cant.caiplx, cant.tigfp, cant.qisjg,
+			cant.peisf, cant.pingjscsj, cant.cantbstp,
+			cant.jingd, cant.weid, cant.pingjzcs,
+			cant.haopcs, cant.chapcs, cant.xiansdjf,
+			cant.xianssjf, cant.xiansdfl, cant.xianssfl,
+			cant.xiansbfc, cant.xiansbfs, cant.xiansbfj,
+			cant.xiansbykz, dbo.caldis(cant.jingd, #{jingd}, cant.weid, #{weid}) AS zhixjl
+		FROM
+			cant
+		WHERE     
+			<![CDATA[ dbo.caldis(cant.jingd, #{jingd}, cant.weid, #{weid})<3 AND cant.cantzt<>'4' AND cant.cantzt<>'5' ]]>
+		) a WHERE <![CDATA[ rownum>#{pageStart} AND rownum<#{pageEnd} ]]> 
+	</select>
+	
+	<!--顾客收藏的餐厅-->
+	<select id="getMyFavoriteRestaurant" resultType="com.gez.grill.entity.CantBasic" parameterType="HashMap">
+		SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY cantsc1.shoucsj DESC, cant.cantzt ASC, cant.id) rownum,
+			cant.id, cant.cantmc, cant.cantzt,
+			cant.caiplx, cant.tigfp, cant.qisjg,
+			cant.pingjscsj, cant.cantbstp, cant.haopcs,
+			cant.chapcs, cant.xiansdjf, cant.xianssjf,
+			cant.xiansdfl, cant.xianssfl, cant.xiansbfc,
+			cant.xiansbfs, cant.xiansbfj, cant.xiansbykz,
+			dbo.caldis(cant.jingd, #{jingd}, cant.weid, #{weid}) AS zhixjl
+		FROM
+			cant,
+			cantsc AS cantsc1
+		WHERE     
+			(cantsc1.cant_id =cant.id AND
+			cantsc1.guk_id =#{gukId,jdbcType=CHAR} AND
+			<![CDATA[ cant.cantzt<>'4' AND cant.cantzt<>'5' ]]>)
+		) a WHERE <![CDATA[ rownum>#{pageStart} AND rownum<#{pageEnd} ]]> 
+	</select>
+	
+	<!--餐厅详情-->
+	<select id="getRestaurantDetail" resultType="com.gez.grill.entity.Cantxq" parameterType="HashMap">
+		SELECT 
+			cant.id, cant.cantmc, caiplx1.mingc AS caiplx,
+			cant.cantdz, cant.cantdh, cant.cantgg,
+			cant.cantjj, CASE WHEN cant.yingykssj IS NULL THEN '' ELSE substring(convert(varchar(16),cant.yingykssj,120),12,5) END AS yingykssj, CASE WHEN cant.yingyjssj IS NULL THEN '' ELSE substring(convert(varchar(16),cant.yingyjssj,120),12,5) END AS yingyjssj,
+			cant.qisjg, cant.peisf, cant.pingjscsj,
+			cant.cantbstp, cant.cantzp1, cant.cantzp2,
+			cant.cantzp3, cant.cantzp4, cant.cantzp5,
+			cant.haopcs, cant.chapcs, (SELECT
+				COUNT(*)
+			FROM
+				cantsc
+			WHERE
+				cantsc.cant_id =#{cantId,jdbcType=CHAR} AND
+				cantsc.guk_id =#{gukId,jdbcType=CHAR}) AS favorite
+		FROM 
+			cant,
+			caiplx as caiplx1
+		WHERE
+			cant.caiplx =caiplx1.bianh AND
+			cant.id =#{cantId,jdbcType=CHAR}
+	</select>
+	
+	<!--餐厅详情但餐厅版本-->
+	<select id="getRestaurantDetailForSingel" resultType="com.gez.grill.entity.Cantxq" parameterType="HashMap">
+		SELECT 
+			cant.id, cant.cantmc, caiplx1.mingc AS caiplx,
+			cant.cantdz, cant.cantdh, cant.cantgg,
+			cant.cantjj, CASE WHEN cant.yingykssj IS NULL THEN '' ELSE substring(convert(varchar(16),cant.yingykssj,120),12,5) END AS yingykssj, CASE WHEN cant.yingyjssj IS NULL THEN '' ELSE substring(convert(varchar(16),cant.yingyjssj,120),12,5) END AS yingyjssj,
+			cant.qisjg, cant.peisf, cant.pingjscsj,
+			cant.cantbstp, cant.cantzp1, cant.cantzp2,
+			cant.cantzp3, cant.cantzp4, cant.cantzp5,
+			cant.haopcs, cant.chapcs, cant.xiansdjf,
+			cant.xianssjf, cant.xiansdfl, cant.xianssfl,
+			cant.xiansbfc, cant.xiansbfs, cant.xiansbfj,
+			cant.xiansbykz, (SELECT
+				COUNT(*)
+			FROM
+				cantsc
+			WHERE
+				cantsc.cant_id =#{cantId,jdbcType=CHAR} AND
+				cantsc.guk_id =#{gukId,jdbcType=CHAR}) AS favorite
+		FROM 
+			cant,
+			caiplx as caiplx1
+		WHERE
+			cant.caiplx =caiplx1.bianh AND
+			cant.id =#{cantId,jdbcType=CHAR}
+	</select>
+	
+	<!--判断用户是否已经收藏了该餐厅-->
+	<select id="isRestaurantCollected" resultType="int" parameterType="HashMap">
+    	SELECT
+    		COUNT(*)
+    	FROM
+    		cantsc
+    	WHERE
+    		cantsc.cant_id =#{cantId,jdbcType=CHAR} AND
+    		cantsc.guk_id =#{gukId,jdbcType=CHAR}
+	</select>
+	
+	<!--获取餐厅编号-->
+	<select id="getRestaurantSerial" resultType="String" parameterType="String">
+		SELECT
+			cant.cantbh
+		FROM
+			cant
+		WHERE
+			cant.id =#{cantId,jdbcType=CHAR}
+	</select>
+	
+	<!--查询餐厅状态-->
+	<select id="getRestaurantStatus" resultType="String" parameterType="String">
+    	SELECT
+    		cantzt
+    	FROM
+    		cant
+    	WHERE
+    		id =#{cantId,jdbcType=CHAR}
+	</select>
+  
+	<!--收藏餐厅-->
+	<insert id="collectRestaurant" parameterType="com.gez.grill.entity.Cantsc">
+    	INSERT INTO cantsc (shoucsj, cant_id, guk_id)
+    	VALUES (getdate(), #{cantId,jdbcType=CHAR}, #{gukId,jdbcType=CHAR})
+	</insert>
+	
+	<!--餐厅信息更新-->
+	<update id="updateRestaurantData" parameterType="HashMap">
+		UPDATE
+			cant
+		SET
+			diandzcs =diandzcs+1,
+			dianczgs =dianczgs+#{dianczgs}
+		WHERE
+			id =#{cantId,jdbcType=CHAR}
+	</update>
+</mapper>

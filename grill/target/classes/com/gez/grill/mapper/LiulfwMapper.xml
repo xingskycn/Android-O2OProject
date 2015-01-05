@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gez.grill.mapper.LiulfwMapper" >
+	<!--更新浏览里-->
+	<update id="updateRestaurantView" parameterType="com.gez.grill.entity.ViewsAndVisits">
+		UPDATE
+			cant
+		SET
+			liulcs =liulcs+#{vav}
+		WHERE
+			id =#{id,jdbcType=CHAR}
+	</update>
+	
+	<!--更新访问量-->
+	<update id="updateRestaurantVisit" parameterType="com.gez.grill.entity.ViewsAndVisits">
+		UPDATE
+			cant
+		SET
+			chakcs =chakcs+#{vav} 
+		WHERE
+			id =#{id,jdbcType=CHAR}
+	</update>
+	
+	<!--更新浏览里-->
+	<update id="updateDishView" parameterType="com.gez.grill.entity.ViewsAndVisits">
+		UPDATE
+			caip
+		SET
+			liulcs =liulcs+#{vav}
+		WHERE
+			id =#{id,jdbcType=CHAR}
+	</update>
+	
+	<!--更新访问量-->
+	<update id="updateDishVisit" parameterType="com.gez.grill.entity.ViewsAndVisits">
+		UPDATE
+			caip
+		SET
+			chakcs =chakcs+#{vav} 
+		WHERE
+			id =#{id,jdbcType=CHAR}
+	</update>
+</mapper>

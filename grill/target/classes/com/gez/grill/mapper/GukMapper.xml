@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gez.grill.mapper.GukMapper">
+	<!--查询用户是否存在-->
+	<select id="isCustomerExist" resultType="int" parameterType="String">
+    	SELECT
+    		COUNT(*)
+    	FROM
+    		guk
+    	WHERE
+    		guk.id =#{customerId,jdbcType=CHAR}
+	</select>
+	
+	<!--查询用户是否绑定-->
+	<select id="isCustomerBind" resultType="String" parameterType="String">
+    	SELECT
+    		guk.id
+    	FROM
+    		guk
+    	WHERE
+    		guk.weibm =#{Id,jdbcType=CHAR} OR
+    		guk.qqh =#{Id,jdbcType=CHAR}
+	</select>
+	
+	<!--查询用户信息-->
+	<select id="getCustomerInfo" resultType="com.gez.grill.entity.GukBasic" parameterType="HashMap">
+	    SELECT 
+			guk.id, guk.weibm ,guk.qqh,
+			guk.zhangh, guk.mordz, guk.mordh,
+			guk.dianh1, guk.dianh2, guk.diz1,
+			guk.diz2, guk.diz3, guk.diz4,
+			guk.diz5, guk.duojf, guk.shaojf,
+			guk.duofl, guk.shaofl, guk.bufc,
+			guk.bufs, guk.bufj, guk.buykz
+	    FROM
+	    	guk
+	    WHERE
+	    	guk.id =#{gukId,jdbcType=CHAR}
+	</select>
+	
+	<!--查询商家openId-->
+	<select id="getCustomerOpenId" resultType="String" parameterType="String">
+    	SELECT
+    		guk.weixh
+    	FROM
+    		guk
+    	WHERE
+    		guk.cantbs =#{cantId,jdbcType=CHAR}
+	</select>
+	
+	<!--最新版本信息-->
+	<select id="getVersion" resultType="com.gez.grill.entity.Banb">
+		SELECT
+			TOP 1 *
+		FROM
+			banb
+		ORDER BY
+			gengxrq DESC
+	</select>
+
+	<!--插入用户信息-->
+	<insert id="newCustomerComming" parameterType="com.gez.grill.entity.Guk">
+	    INSERT INTO guk (id, weixh, weixm, 
+		    weibm, qqh, zhangh, 
+		    zhuangt, mordz, mordh, 
+		    xingm, dianh1, dianh2, 
+		    diz1, diz2, diz3, diz4, 
+		    diz5, jingd, weid, 
+		    jingd2, weizms, zongdccs, 
+		    zongdcfs, zongdcje, duojf, 
+		    shaojf, duofl, shaofl, bufc, 
+		    bufs, bufj, buykz)
+	    VALUES (#{id,jdbcType=CHAR}, #{weixh,jdbcType=VARCHAR}, #{weixm,jdbcType=VARCHAR}, 
+		    #{weibm,jdbcType=VARCHAR}, #{qqh,jdbcType=VARCHAR}, #{zhangh,jdbcType=VARCHAR}, 
+		    #{zhuangt,jdbcType=VARCHAR}, #{mordz,jdbcType=VARCHAR}, #{mordh,jdbcType=VARCHAR}, 
+		    #{xingm,jdbcType=VARCHAR}, #{dianh1,jdbcType=VARCHAR}, #{dianh2,jdbcType=VARCHAR}, 
+		    #{diz1,jdbcType=VARCHAR}, #{diz2,jdbcType=VARCHAR}, #{diz3,jdbcType=VARCHAR}, #{diz4,jdbcType=VARCHAR}, 
+		    #{diz5,jdbcType=VARCHAR}, #{jingd,jdbcType=NUMERIC}, #{weid,jdbcType=NUMERIC}, 
+		    #{jingd2,jdbcType=NUMERIC}, #{weizms,jdbcType=VARCHAR}, #{zongdccs,jdbcType=INTEGER}, 
+		    #{zongdcfs,jdbcType=INTEGER}, #{zongdcje,jdbcType=NUMERIC}, #{duojf,jdbcType=BIT}, 
+		    #{shaojf,jdbcType=BIT}, #{duofl,jdbcType=BIT}, #{shaofl,jdbcType=BIT}, #{bufc,jdbcType=BIT}, 
+		    #{bufs,jdbcType=BIT}, #{bufj,jdbcType=BIT}, #{buykz,jdbcType=BIT})
+	</insert>
+	
+	<!--插入用户信息-->
+	<insert id="feedback" parameterType="HashMap">
+		INSERT INTO yijfk (id, tijsj, zhuangt, fanknr, guk_id)
+		VALUES (newid(), getdate(), '01', #{gukfk}, #{gukId})
+	</insert>
+	
+	<!--绑定用户-->
+	<update id="bindAccount" parameterType="com.gez.grill.entity.Guk">
+		UPDATE
+			guk
+		SET
+        	weibm =#{weibm,jdbcType=VARCHAR},
+        	qqh =#{qqh,jdbcType=VARCHAR},
+        	mordh =#{mordh,jdbcType=VARCHAR},
+        	mordz = #{mordz,jdbcType=VARCHAR},
+        	dianh1 =#{dianh1,jdbcType=VARCHAR},
+        	dianh2 =#{dianh2,jdbcType=VARCHAR},
+        	diz1 =#{diz1,jdbcType=VARCHAR},
+        	diz2 =#{diz2,jdbcType=VARCHAR},
+        	diz3 =#{diz3,jdbcType=VARCHAR},
+        	diz4 =#{diz4,jdbcType=VARCHAR},
+        	diz5 =#{diz5,jdbcType=VARCHAR},
+			zhuangt ='已绑定'
+    	WHERE id =#{id,jdbcType=CHAR}
+	</update>
+	
+	<!--标记僵尸-->
+	<update id="markZombie" parameterType="String">
+		UPDATE guk SET weibm='未绑定', qqh='未绑定', zhuangt ='zombie' WHERE id =#{Id,jdbcType=CHAR}
+	</update>
+	
+	<!--合并数据-->
+	<update id="mergerData" parameterType="HashMap">
+		UPDATE dingd SET guk_id =#{newId,jdbcType=CHAR} WHERE guk_id=#{oldId,jdbcType=CHAR}
+		UPDATE cantpl SET guk_id =#{newId,jdbcType=CHAR} WHERE guk_id=#{oldId,jdbcType=CHAR}
+		UPDATE caippl SET guk_id =#{newId,jdbcType=CHAR} WHERE guk_id=#{oldId,jdbcType=CHAR}
+		UPDATE gukct SET guk_id =#{newId,jdbcType=CHAR} WHERE guk_id=#{oldId,jdbcType=CHAR}
+		UPDATE guklswz SET guk_id =#{newId,jdbcType=CHAR} WHERE guk_id=#{oldId,jdbcType=CHAR}
+		UPDATE cantsc SET guk_id =#{newId,jdbcType=CHAR} WHERE guk_id=#{oldId,jdbcType=CHAR}
+		UPDATE caipsc SET guk_id =#{newId,jdbcType=CHAR} WHERE guk_id=#{oldId,jdbcType=CHAR}
+	</update>
+	
+	<!--用户信息更新-->
+	<update id="updateCustomerData" parameterType="com.gez.grill.entity.GukBasic">
+		UPDATE
+			guk
+		SET
+			mordz =#{mordz},
+			mordh =#{mordh},
+			dianh1 =#{dianh1},
+			dianh2 =#{dianh2},
+			diz1 =#{diz1},
+			diz2 =#{diz2},
+			diz3 =#{diz3},
+			diz4 =#{diz4},
+			diz5 =#{diz5},
+			zongdccs =zongdccs+1,
+			zongdcfs =zongdcfs+#{zongdcfs},
+			zongdcje =zongdcje+#{zongdcje},
+			duojf =#{duojf},
+			shaojf =#{shaojf},
+			duofl =#{duofl},
+			shaofl =#{shaofl},
+			bufc =#{bufc},
+			bufs =#{bufs},
+			bufj =#{bufj},
+			buykz =#{buykz}
+		WHERE
+			id =#{id,jdbcType=CHAR}
+	</update>
+</mapper>

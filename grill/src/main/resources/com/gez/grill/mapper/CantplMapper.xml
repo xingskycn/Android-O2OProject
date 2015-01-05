@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gez.grill.mapper.CantplMapper" >
+	<!--餐厅评论-->
+	<select id="getCommentForRestaurant" resultType="com.gez.grill.entity.Pingl" parameterType="HashMap">
+		SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY cantpl.pinglsj DESC) rownum,
+			cantpl.id, guk1.zhangh, guk1.zongdccs,
+			guk1.zongdcfs, guk1.zongdcje, cantpl.pingj,
+			cantpl.pinglsj, cantpl.pinglnr
+		FROM
+			cantpl,
+			cant AS cant1,
+			guk AS guk1
+		WHERE
+			(cantpl.cant_id =cant1.id AND 
+			cantpl.guk_id =guk1.id AND
+			cant1.id =#{cantId,jdbcType=CHAR} AND
+			cantpl.shifpb =0)
+		) a WHERE <![CDATA[ rownum>#{pageStart} AND rownum<#{pageEnd} ]]>
+	</select>
+	
+	<!--评价餐厅-->
+	<insert id="addCommentsForRestaurant" parameterType="com.gez.grill.entity.Cantpl">
+	    INSERT INTO cantpl (id, pinglsj, pinglnr,
+	    	pingj, shifpb, cant_id,
+	    	guk_id)
+	    VALUES (newid(), getdate(), #{pinglnr},
+	    	#{pingj,jdbcType=BOOLEAN}, 0, #{cantId,jdbcType=CHAR},
+	    	#{gukId,jdbcType=CHAR})
+	</insert>
+	
+	<!--好评-->
+	<update id="addGoodComments" parameterType="String">
+	    UPDATE
+	    	cant
+	    SET
+	    	pinglts =pinglts+1, pingjzcs =pingjzcs+1, haopcs =haopcs+1
+	    WHERE
+	    	id=#{cantId,jdbcType=CHAR}
+	</update>
+	
+	<!--差评-->
+	<update id="addBadComments" parameterType="String">
+	    UPDATE
+	    	cant
+	    SET
+	    	pinglts =pinglts+1, pingjzcs =pingjzcs+1, chapcs =chapcs+1
+	    WHERE
+	    	id=#{cantId,jdbcType=CHAR}
+	</update>
+</mapper>
