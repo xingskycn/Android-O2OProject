@@ -704,8 +704,11 @@ public class RestClient {
 	
 	public static void getIndexData(final IJsonModelData modelData) {
 		RequestParams params = new RequestParams();
-		params.put("guk_id", ActivityGlobal.getUserId());
+//		params.put("guk_id", "F61EA815-5651-4638-B85A-8B90DC2E0DE9");
+//		params.put("guk_id", ActivityGlobal.getUserId());
+		params.put("guk_id", "163E594D-14DD-46AC-811C-7F657867960E");
 		
+
 		client.get(getAbsoluteUrl(GET_SHOUY), params, new AsyncHttpResponseHandler() {
 			@Override
 			public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -741,7 +744,8 @@ public class RestClient {
 		    params.put("riq", riq);  
 		    params.put("zhaop", file);
 		    params.put("type", "iloveyou"); 
-		    params.put("guk_id",ActivityGlobal.getUserId());
+//		    params.put("guk_id",ActivityGlobal.getUserId());
+			params.put("guk_id", "163E594D-14DD-46AC-811C-7F657867960E");
 		    params.put("caip_id", "56AA2B9E-6EF2-41CB-B10E-DD0CF8C7C229");  
 		    
 		    // 上传文件  
@@ -810,7 +814,9 @@ public class RestClient {
 		    params.put("riq", riq);  
 		    params.put("tiz", Float.toString(guktz));
 		    params.put("zhuangt", zhuangt); 
-		    params.put("guk_id", ActivityGlobal.getUserId());
+//		    params.put("guk_id", ActivityGlobal.getUserId());
+			params.put("guk_id", "163E594D-14DD-46AC-811C-7F657867960E");
+		    params.put("caip_id", "56AA2B9E-6EF2-41CB-B10E-DD0CF8C7C229");  
 		    
 		    // 上传文件  
 		    client.post(getAbsoluteUrl(UPLOAD_GUKTZ), params, new AsyncHttpResponseHandler() {  
@@ -833,11 +839,25 @@ public class RestClient {
 		    });  
 	}
 	
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public static void getGukxcList(final IJsonModelArrayData modelData) {
 		RequestParams params = new RequestParams();
-		params.put("guk_id", ActivityGlobal.getUserId());
+//		params.put("guk_id", ActivityGlobal.getUserId());
+		params.put("guk_id", "163E594D-14DD-46AC-811C-7F657867960E");
 
 		client.get(getAbsoluteUrl(GET_GUKXC), params, new AsyncHttpResponseHandler() {
 				@Override
@@ -863,8 +883,10 @@ public class RestClient {
 	
 	public static void getGuktzList(final IJsonModelArrayData modelData) {
 		RequestParams params = new RequestParams();
-		params.put("guk_id", ActivityGlobal.getUserId());
-		
+//		params.put("guk_id", ActivityGlobal.getUserId());
+			
+		params.put("guk_id", "163E594D-14DD-46AC-811C-7F657867960E");
+
 		client.get(getAbsoluteUrl(GET_GUKTZ), params, new AsyncHttpResponseHandler() {
 				@Override
 				public void onSuccess(int statusCode, Header[] headers,

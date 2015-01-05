@@ -37,58 +37,48 @@ public class MainActivity extends SlidingFragmentActivity {
 
 	//当前选中按钮ID
 	private int currentContentId;
-	private Fragment currentFragment;	//当前采用的fragment
+	private Fragment currentFragment;
 	
-	private MainFragment mainFragment;	//主页面fragment
-	private AboutUsFragment aboutUsFragment;	//关于
-	private FeedBackFragment feedBackFragment;	//反馈
+	private MainFragment mainFragment;
+	private AboutUsFragment aboutUsFragment;
+	private FeedBackFragment feedBackFragment;
 	private Intent intent = null;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//①载入空白的view为main_content，是一个全屏的FrameLayout,其id是content_frame
+
 		setContentView(R.layout.main_content);
 
 		
 		// 设置滑动菜单
-		setBehindContentView(R.layout.menu_frame);	//设置SlidingMenu使用的布局，是一个全屏的FrameLayout，此时采用一个空的布局文件
-		getSlidingMenu().setSlidingEnabled(true);	//可以使用滑动菜单
+		setBehindContentView(R.layout.menu_frame);
+		getSlidingMenu().setSlidingEnabled(true);
 		getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);// 设置滑动的屏幕范围，该设置为全屏区域都可以滑动
 
-		/*
-		 * 设置actionBar
-		 */
-		getSupportActionBar().setDisplayShowTitleEnabled(false);	//不显示activity的title
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);		// 显示左上角的滑动菜单图标
-		
-		//顶部导航view对象的获取，这个名为main_tilte的view包含了一个textview
+		getSupportActionBar().setDisplayShowTitleEnabled(false);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);// 显示向左的图标
+
 		View customNav = LayoutInflater.from(this).inflate(R.layout.main_title,
 				null);
-		//actionbar中的子布局参数，高度，宽度，位置
 		ActionBar.LayoutParams params = new ActionBar.LayoutParams(
 				ActionBar.LayoutParams.MATCH_PARENT,
 				ActionBar.LayoutParams.MATCH_PARENT, Gravity.CENTER);
-		// 添加view，然后设置是否显示
+
 		getSupportActionBar().setCustomView(customNav, params);
-		getSupportActionBar().setDisplayShowCustomEnabled(true);	//显示
-		
-		//获得view下面的textview对象，并赋值一个名为main_title的字符串“曹教授减肥餐”
+		getSupportActionBar().setDisplayShowCustomEnabled(true);
+
 		mAddressTextView = (TextView) customNav
 				.findViewById(R.id.main_current_address_text_view);
 		mAddressTextView.setText(R.string.main_title);
 
-		/*
-		 * 设置fragment的展示
-		 */	
-		mainFragment = new MainFragment();	// 初始化主页面上显示的Fragment(首页，订购，餐厅，订单)
-		currentFragment = mainFragment;		//设置当前采用的fragment为mainFragment
-		this.currentContentId = R.id.home_menu_main_business;	//当前所展示的fragment，对应在滑动菜单上textview的id，这里为“首页”
-		
-		//把当前的fragment，即①中的main_content布局文件，用mainFragment中的布局代替
+		// 设置主页面显示的Fragment
+		mainFragment = new MainFragment();
+		currentFragment = mainFragment;
+		this.currentContentId = R.id.home_menu_main_business;
 		getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, mainFragment).commit();
 		
-		// MainMenuFragment设置侧边滑动菜单的详细内容，replace方法用菜单列表的实例代替了空的menu_frame的layout
+		// 设置滑动内容
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.menu_frame, new MainMenuFragment()).commit();
 

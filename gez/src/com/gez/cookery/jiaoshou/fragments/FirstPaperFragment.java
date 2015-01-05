@@ -17,7 +17,6 @@ import lecho.lib.hellocharts.model.ValueShape;
 import lecho.lib.hellocharts.model.Viewport;
 import lecho.lib.hellocharts.view.LineChartView;
 
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -75,19 +74,6 @@ import com.gez.cookery.jiaoshou.widget.PullToRefreshListView;
 
 public class FirstPaperFragment extends SherlockFragment {
 	protected static final int SELECT_PIC_BY_PICK_PHOTO = 100;
-	// 列表对象
-	private PullToRefreshListView lvListView; // 下拉刷新
-	// 适配器
-	private FoodListAdapter lvListViewAdapter;
-	// 列表尾部视图
-	private View lvListView_footer;
-	// 列表加载更多视图
-	private TextView lvListView_foot_more;
-	// 加载状态视图
-	private ProgressBar lvListView_foot_progress;
-	// 列表数据
-	// private List<FlowTupBasic> lvTaocTupViewData = new
-	// ArrayList<FlowTupBasic>();
 
 	private List<FlowTupBasic> lvZhaopViewData = new ArrayList<FlowTupBasic>();
 
@@ -98,9 +84,6 @@ public class FirstPaperFragment extends SherlockFragment {
 	private List<Gukxc> xiangcList = new ArrayList<Gukxc>();
 
 	private List<Guktz> guktzList = new ArrayList<Guktz>();
-
-	// 数据总数
-	private int lvListViewSumData;
 
 	private View mRootView;
 
@@ -144,24 +127,17 @@ public class FirstPaperFragment extends SherlockFragment {
 
 	private final Calendar date = Calendar.getInstance();
 
-	// 传照片的标志位
-	private int flag = 0;
-
-	private ImageView cesza;
-
-	private BitmapManager bmpManager = new BitmapManager();
-
 	private LineChartView chart; // PieChartView决定了所显示图形的样式
 	private LineChartData data; // PieChartData决定了所显示图形的数据
-	private boolean hasAxes = true;	//是否有坐标轴
-	private boolean hasAxesNames = true;	//是否有坐标名
-	private boolean hasLines = true;	//是否有线段
-	private boolean hasPoints = true;	//是否有点
-	private ValueShape shape = ValueShape.CIRCLE;	//点是圆形还是矩形
-	private boolean isFilled = true;	//线段面积是否填充
-	private boolean hasLabels = false;	//是否有标签
-	private boolean isCubic = true;	//是否平滑
-	private boolean hasLabelForSelected = true;	//点被选中时是否显示标签
+	private boolean hasAxes = true; // 是否有坐标轴
+	private boolean hasAxesNames = true; // 是否有坐标名
+	private boolean hasLines = true; // 是否有线段
+	private boolean hasPoints = true; // 是否有点
+	private ValueShape shape = ValueShape.CIRCLE; // 点是圆形还是矩形
+	private boolean isFilled = true; // 线段面积是否填充
+	private boolean hasLabels = true; // 是否有标签
+	private boolean isCubic = true; // 是否平滑
+	private boolean hasLabelForSelected = false; // 点被选中时是否显示标签
 
 	public void setMainFragment(Fragment fragment) {
 		this.mainFragment = fragment;
@@ -181,7 +157,7 @@ public class FirstPaperFragment extends SherlockFragment {
 		mRootView = inflater.inflate(R.layout.first_paper, null);
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		riq = sdf.format(date.getTime());
+		riq = sdf.format(date.getTime());	//获得的格式化日期字符串为yyyy-MM-dd hh:mm:ss，可以直接插入数据库Da
 
 		RestClient.getIndexData(new IJsonModelData() {
 
@@ -191,7 +167,6 @@ public class FirstPaperFragment extends SherlockFragment {
 				int zaopSize = -1;
 				int guktzSize = -1;
 				List<mTextTz> mtextTzList = new ArrayList<mTextTz>();
-				;
 				if (data != null) {
 					Shouy shouy = (Shouy) data;
 					shouyList = shouy;
@@ -233,7 +208,6 @@ public class FirstPaperFragment extends SherlockFragment {
 				showTextTz(mtextTzList);
 				drawTaoc();
 				drawXiangc();
-
 			}
 
 		});
@@ -517,32 +491,39 @@ public class FirstPaperFragment extends SherlockFragment {
 				.setActionDistance(FancyCoverFlow.ACTION_DISTANCE_AUTO);
 
 	}
-
-//	for (int i = 0; i < len; i++) {
-//		values.add(new PointValue(i+1, list.get(i).getTiz()));
-//	}
-//	int len = list.size();
-	
+	/**
+	 * 绘制体重图表
+	 * @param list 顾客体重列表
+	 */
 	private void drawChart(ArrayList<Guktz> list) {
-
+		int len = list.size();
 		chart = (LineChartView) mRootView.findViewById(R.id.chart1);
-		chart.setOnValueTouchListener(new ValueTouchListener());
 		
+//		chart.setOnValueTouchListener(new ValueTouchListener());
 		chart.setViewportCalculationEnabled(false);
-		Viewport v = new Viewport(0, 8, 6, 0);
+		data = new LineChartData();
+		List<PointValue> values = new ArrayList<PointValue>();
+		float max = 0;
+		float min = list.get(0).getTiz();
+		
+		for (int i = 0; i < len; i++) {
+			values.add(new PointValue(i + 1, list.get(i).getTiz()));
+			if (list.get(i).getTiz() > max) {
+				max = list.get(i).getTiz();
+			}
+			if(list.get(i).getTiz() < min){
+				min = list.get(i).getTiz();
+			}
+		}
+		
+		max = Math.round(max);
+		min = Math.round(min);
+
+		Viewport v = new Viewport(0, max+1, 6, min-1);
 		chart.setMaximumViewport(v);
 		chart.setCurrentViewport(v);
 		
-		data = new LineChartData();
-		List<PointValue> values = new ArrayList<PointValue>();
-
-		values.add(new PointValue(1, 1));
-		values.add(new PointValue(2, 2));
-		values.add(new PointValue(3, 3));
-		values.add(new PointValue(4, 4));
-		
 		Line line = new Line(values);
-		
 		line.setShape(shape);
 		line.setCubic(isCubic);
 		line.setFilled(isFilled);
@@ -550,24 +531,27 @@ public class FirstPaperFragment extends SherlockFragment {
 		line.setHasLabelsOnlyForSelected(hasLabelForSelected);
 		line.setHasLines(hasLines);
 		line.setHasPoints(hasPoints);
-		
+
 		List<Line> lines = new ArrayList<Line>(1);
 		lines.add(line);
 		data.setLines(lines);
-		
+
 		if (hasAxes) {
-			
 			List<AxisValue> as = new ArrayList<AxisValue>();
-			
-			for(int i=1; i<=4; i++){
-				as.add(new AxisValue(i, ("hello"+i).toCharArray()));
+			for (int i = 0; i < len; i++) {
+				String orgin = list.get(i).getRiq();
+				String reality = "";
+				if (null != orgin && !"".equals(orgin)) {
+					reality = orgin.split(" ")[0];
+				}
+				as.add(new AxisValue(i + 1, reality.substring(5).toCharArray()));
 			}
 			Axis axisX = new Axis(as);
-			Axis axisY = new Axis();	
-				
+			Axis axisY = new Axis();
+
 			if (hasAxesNames) {
-				axisX.setName("Axis X");
-				axisY.setName("Axis Y");
+				axisX.setName("时间:月-日");
+				axisY.setName("斤");
 			}
 			data.setAxisXBottom(axisX);
 			data.setAxisYLeft(axisY);
@@ -575,22 +559,24 @@ public class FirstPaperFragment extends SherlockFragment {
 			data.setAxisXBottom(null);
 			data.setAxisYLeft(null);
 		}
-		chart.setLineChartData(data);		
+		chart.setLineChartData(data);
 	}
-	
-	private class ValueTouchListener implements LineChartOnValueSelectListener {
 
-		@Override
-		public void onValueSelected(int lineIndex, int pointIndex, PointValue value) {
-			Toast.makeText(getActivity(), "Selected: " + value, Toast.LENGTH_SHORT).show();
-		}
-
-		@Override
-		public void onValueDeselected() {
-			// TODO Auto-generated method stub
-
-		}
-
-	}
+//	private class ValueTouchListener implements LineChartOnValueSelectListener {
+//
+//		@Override
+//		public void onValueSelected(int lineIndex, int pointIndex,
+//				PointValue value) {
+//			Toast.makeText(getActivity(), "Selected: " + value,
+//					Toast.LENGTH_SHORT).show();
+//		}
+//
+//		@Override
+//		public void onValueDeselected() {
+//			// TODO Auto-generated method stub
+//
+//		}
+//
+//	}
 
 }
