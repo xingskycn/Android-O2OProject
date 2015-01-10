@@ -16,7 +16,7 @@ public final class R {
 		public static final int unselectedScale = 0x7f010002;
 	}
 	public static final class id {
-		public static final int auto = 0x7f0b0007;
+		public static final int auto = 0x7f0a0007;
 	}
 	public static final class string {
 		public static final int app_name = 0x7f050000;

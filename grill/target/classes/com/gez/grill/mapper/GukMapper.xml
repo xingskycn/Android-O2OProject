@@ -18,20 +18,17 @@
     	FROM
     		guk
     	WHERE
-    		guk.weibm =#{Id,jdbcType=CHAR} OR
-    		guk.qqh =#{Id,jdbcType=CHAR}
+    		guk.weixh =#{Id,jdbcType=CHAR}
 	</select>
 	
 	<!--查询用户信息-->
 	<select id="getCustomerInfo" resultType="com.gez.grill.entity.GukBasic" parameterType="HashMap">
 	    SELECT 
-			guk.id, guk.weibm ,guk.qqh,
-			guk.zhangh, guk.mordz, guk.mordh,
+			guk.id, guk.xingm, guk.zhucrq,
+			guk.mordh, guk.mordz, guk.weixh, guk.weixm,
 			guk.dianh1, guk.dianh2, guk.diz1,
-			guk.diz2, guk.diz3, guk.diz4,
-			guk.diz5, guk.duojf, guk.shaojf,
-			guk.duofl, guk.shaofl, guk.bufc,
-			guk.bufs, guk.bufj, guk.buykz
+			guk.diz2, guk.diz3, guk.diz4, guk.diz5, 
+			guk.zongdcfs, guk.zongdccs, guk.zongdcje
 	    FROM
 	    	guk
 	    WHERE
@@ -60,29 +57,25 @@
 
 	<!--插入用户信息-->
 	<insert id="newCustomerComming" parameterType="com.gez.grill.entity.Guk">
-	    INSERT INTO guk (id, weixh, weixm, 
-		    weibm, qqh, zhangh, 
-		    zhuangt, mordz, mordh, 
-		    xingm, dianh1, dianh2, 
-		    diz1, diz2, diz3, diz4, 
-		    diz5, jingd, weid, 
-		    jingd2, weizms, zongdccs, 
-		    zongdcfs, zongdcje, duojf, 
-		    shaojf, duofl, shaofl, bufc, 
-		    bufs, bufj, buykz)
-	    VALUES (#{id,jdbcType=CHAR}, #{weixh,jdbcType=VARCHAR}, #{weixm,jdbcType=VARCHAR}, 
-		    #{weibm,jdbcType=VARCHAR}, #{qqh,jdbcType=VARCHAR}, #{zhangh,jdbcType=VARCHAR}, 
-		    #{zhuangt,jdbcType=VARCHAR}, #{mordz,jdbcType=VARCHAR}, #{mordh,jdbcType=VARCHAR}, 
-		    #{xingm,jdbcType=VARCHAR}, #{dianh1,jdbcType=VARCHAR}, #{dianh2,jdbcType=VARCHAR}, 
-		    #{diz1,jdbcType=VARCHAR}, #{diz2,jdbcType=VARCHAR}, #{diz3,jdbcType=VARCHAR}, #{diz4,jdbcType=VARCHAR}, 
-		    #{diz5,jdbcType=VARCHAR}, #{jingd,jdbcType=NUMERIC}, #{weid,jdbcType=NUMERIC}, 
-		    #{jingd2,jdbcType=NUMERIC}, #{weizms,jdbcType=VARCHAR}, #{zongdccs,jdbcType=INTEGER}, 
-		    #{zongdcfs,jdbcType=INTEGER}, #{zongdcje,jdbcType=NUMERIC}, #{duojf,jdbcType=BIT}, 
-		    #{shaojf,jdbcType=BIT}, #{duofl,jdbcType=BIT}, #{shaofl,jdbcType=BIT}, #{bufc,jdbcType=BIT}, 
-		    #{bufs,jdbcType=BIT}, #{bufj,jdbcType=BIT}, #{buykz,jdbcType=BIT})
+    insert into guk (id, openid, xingm, 
+      zhucrq, mordh, mordz, 
+      weixh, weixm,
+      dianh1, dianh2, diz1, 
+      diz2, diz3, diz4, diz5, 
+      jingd, weid, jingd2, 
+      weizms, zongdccs, zongdcfs, 
+      zongdcje, zhuangt)
+    values (#{id,jdbcType=CHAR}, #{openid,jdbcType=VARCHAR}, #{xingm,jdbcType=VARCHAR}, 
+      #{zhucrq,jdbcType=TIMESTAMP}, #{mordh,jdbcType=VARCHAR}, #{mordz,jdbcType=VARCHAR}, 
+      #{weixh,jdbcType=VARCHAR}, #{weixm,jdbcType=VARCHAR}, 
+      #{dianh1,jdbcType=VARCHAR}, #{dianh2,jdbcType=VARCHAR}, #{diz1,jdbcType=VARCHAR}, 
+      #{diz2,jdbcType=VARCHAR}, #{diz3,jdbcType=VARCHAR}, #{diz4,jdbcType=VARCHAR}, #{diz5,jdbcType=VARCHAR}, 
+      #{jingd,jdbcType=NUMERIC}, #{weid,jdbcType=NUMERIC}, #{jingd2,jdbcType=NUMERIC}, 
+      #{weizms,jdbcType=VARCHAR}, #{zongdccs,jdbcType=INTEGER}, #{zongdcfs,jdbcType=INTEGER}, 
+      #{zongdcje,jdbcType=NUMERIC}, #{zhuangt,jdbcType=VARCHAR})
 	</insert>
 	
-	<!--插入用户信息-->
+	<!--插入反馈信息-->
 	<insert id="feedback" parameterType="HashMap">
 		INSERT INTO yijfk (id, tijsj, zhuangt, fanknr, guk_id)
 		VALUES (newid(), getdate(), '01', #{gukfk}, #{gukId})
@@ -93,8 +86,8 @@
 		UPDATE
 			guk
 		SET
-        	weibm =#{weibm,jdbcType=VARCHAR},
-        	qqh =#{qqh,jdbcType=VARCHAR},
+        	weixh =#{weixh,jdbcType=VARCHAR},
+        	weixm =#{weixm,jdbcType=VARCHAR},
         	mordh =#{mordh,jdbcType=VARCHAR},
         	mordz = #{mordz,jdbcType=VARCHAR},
         	dianh1 =#{dianh1,jdbcType=VARCHAR},
@@ -110,7 +103,7 @@
 	
 	<!--标记僵尸-->
 	<update id="markZombie" parameterType="String">
-		UPDATE guk SET weibm='未绑定', qqh='未绑定', zhuangt ='zombie' WHERE id =#{Id,jdbcType=CHAR}
+		UPDATE guk SET weixh='未绑定' WHERE id =#{Id,jdbcType=CHAR}
 	</update>
 	
 	<!--合并数据-->
@@ -140,15 +133,7 @@
 			diz5 =#{diz5},
 			zongdccs =zongdccs+1,
 			zongdcfs =zongdcfs+#{zongdcfs},
-			zongdcje =zongdcje+#{zongdcje},
-			duojf =#{duojf},
-			shaojf =#{shaojf},
-			duofl =#{duofl},
-			shaofl =#{shaofl},
-			bufc =#{bufc},
-			bufs =#{bufs},
-			bufj =#{bufj},
-			buykz =#{buykz}
+			zongdcje =zongdcje+#{zongdcje}
 		WHERE
 			id =#{id,jdbcType=CHAR}
 	</update>

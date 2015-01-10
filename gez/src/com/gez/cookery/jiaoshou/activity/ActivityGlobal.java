@@ -27,10 +27,12 @@ public class ActivityGlobal extends Application {
 		super.onCreate();
 		context = getApplicationContext();
 		
+		//从SharedPreferences取得userId
 		String userId = getSpString(Constants.USER_ID, null);
 		if (userId == null) {
 			userId = UUID.randomUUID().toString();
 		}
+		//以键值对的形式将userId保存在SharedPreferences中，下次打开仍可使用
 		setSpString(Constants.USER_ID, userId);
 		user.setId(userId);
 
@@ -133,26 +135,15 @@ public class ActivityGlobal extends Application {
 			public void onReturn(JsonModel data) {
 				if (data != null) {
 					GukBasic detail = (GukBasic) data;
-					user.setDiz1(detail.getDiz1());
+					user.setDiz1(detail.getDiz1());		//地址1到5
 					user.setDiz2(detail.getDiz2());
 					user.setDiz3(detail.getDiz3());
 					user.setDiz4(detail.getDiz4());
 					user.setDiz5(detail.getDiz5());
-					user.setQqh(detail.getQqh());
-					user.setWeibm(detail.getWeibm());
-					user.setMordh(detail.getMordh());
-					user.setMordz(detail.getMordz());
-					user.setZhangh(detail.getZhangh());
-					user.setDianh1(detail.getDianh1());
+					user.setMordh(detail.getMordh());	//默认电话
+					user.setMordz(detail.getMordz());	//默认地址
+					user.setDianh1(detail.getDianh1());	//电话1，2
 					user.setDianh2(detail.getDianh2());
-					user.setDuofl(detail.isDuofl());
-					user.setShaofl(detail.isShaofl());
-					user.setDuojf(detail.isDuojf());
-					user.setShaojf(detail.isShaojf());
-					user.setBufc(detail.isBufc());
-					user.setBufj(detail.isBufj());
-					user.setBufs(detail.isBufs());
-					user.setBuykz(detail.isBuykz());
 				}
 			}
 		});

@@ -12,8 +12,6 @@ public class Guktz {
 
 	private String guk_id;
 
-	private String caip_id;
-
 	public String getId() {
 		return id;
 	}
@@ -52,14 +50,6 @@ public class Guktz {
 
 	public void setGuk_id(String guk_id) {
 		this.guk_id = guk_id;
-	}
-
-	public String getCaip_id() {
-		return caip_id;
-	}
-
-	public void setCaip_id(String caip_id) {
-		this.caip_id = caip_id;
 	}
 
 }

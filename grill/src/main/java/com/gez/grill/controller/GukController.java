@@ -54,8 +54,8 @@ public class GukController {
 	@ResponseBody
 	public GukBasic bindAccount(
 			@RequestParam(value = "gukId") String gukId,
-			@RequestParam(value = "weibm", required = false) String weibm,
-			@RequestParam(value = "qqh", required = false) String qqh,
+			@RequestParam(value = "weixh", required = false) String weixh,
+			@RequestParam(value = "weixm", required = false) String weixm,
 			@RequestParam(value = "dianh1", required = false) String dianh1,
 			@RequestParam(value = "dianh2", required = false) String dianh2,
 			@RequestParam(value = "diz1", required = false) String diz1,
@@ -65,7 +65,7 @@ public class GukController {
 			@RequestParam(value = "diz5", required = false) String diz5) {
 		GukBasic customerInfo = new GukBasic();
 		try {
-			customerInfo = gukInstance.bindAccount(gukId, weibm, qqh, dianh1, dianh2, diz1, diz2, diz3, diz4, diz5);
+			customerInfo = gukInstance.bindAccount(gukId, weixh, weixm, dianh1, dianh2, diz1, diz2, diz3, diz4, diz5);
 		} catch (Exception e) {
 			logger.error(e);
 		}

@@ -51,21 +51,24 @@ public class ShouyController {
 		ArrayList<Taocmx> gettaocmxList = new ArrayList<Taocmx>();
 		ArrayList<Gukxc> getGukxcList = new ArrayList<Gukxc>();
 		ArrayList<Guktz> getGuktzList = new ArrayList<Guktz>();
-	    ArrayList<ShouyBasic> shouyBasic = null;
+	    ShouyBasic shouyBasic = null;
 		
 		try {
 			gettaocmxList = shouyInstance.gettaocmxList(guk_id);	//正确
 			getGuktzList = shouyInstance.getguktzList(guk_id);	//本地验证正确
 			getGukxcList = shouyInstance.getGukxcList(guk_id);	//没拍照不知道
 			shouyBasic = shouyInstance.getShouyBasicList(guk_id);
-			ShouyBasic shouybasic = shouyBasic.get(0);
-			shouy.setKaissy(shouybasic.getKaissy());
-			shouy.setJiessy(shouybasic.getJiessy());
-			shouy.setDingd_id(shouybasic.getDingd_id());
-			shouy.setCaip_id(shouybasic.getCaip_id());
+			if(shouyBasic!= null){			
+				shouy.setKaissy(shouyBasic.getKaissy());
+				shouy.setJiessy(shouyBasic.getJiessy());
+				shouy.setDingd_id(shouyBasic.getDingd_id());
+				shouy.setCaip_id(shouyBasic.getCaip_id());
+			}
+			
 			shouy.setGuktz(getGuktzList);
 			shouy.setGukxc(getGukxcList);
 			shouy.setTaocmx(gettaocmxList);
+
 		
 		} catch (Exception e) {
 			logger.error(e);

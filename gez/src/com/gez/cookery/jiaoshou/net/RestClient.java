@@ -2,12 +2,8 @@ package com.gez.cookery.jiaoshou.net;
 
 import java.io.File;
 import java.util.List;
-
 import org.apache.http.Header;
-
 import android.util.Log;
-import android.widget.Toast;
-
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -27,8 +23,8 @@ public class RestClient {
 	
 //	private static final String BASE_URL = "http://192.168.1.229:8070/";
 	
-	private static final String BASE_URL = "http://alpha.glassware.stew.lysp.biz/";
-//	 private static final String BASE_URL = "http://192.168.1.102:8080/";
+//	private static final String BASE_URL = "http://alpha.glassware.stew.lysp.biz/";
+	 private static final String BASE_URL = "http://192.168.0.105:8080/";
 
 	// private static final String BASE_IMAGE_URL =
 	// "http://192.168.1.92:8090/resources/files/";
@@ -110,7 +106,6 @@ public class RestClient {
 		Log.i("imageIf",image);
 		
 		if (image.length() >= 36) {
-			String t = BASE_IMAGE_URL + image.substring(0, 36) + ".image";
 			Log.i("imageIf",image);
 			return BASE_IMAGE_URL + image.substring(0, 36) + ".image";
 			
@@ -150,7 +145,7 @@ public class RestClient {
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
 					byte[] responseBody) {
-
+				System.out.println("getBusinessList-----"+new String(responseBody));
 				List<CantBasic> list = JsonUtil.fromJson(new String(
 						responseBody), new TypeToken<List<CantBasic>>() {
 				}.getType());
@@ -180,7 +175,7 @@ public class RestClient {
 					public void onSuccess(int statusCode, Header[] headers,
 							byte[] responseBody) {
 
-						System.out.println(new String(responseBody));
+						System.out.println("getBusinessDetail-----"+new String(responseBody));
 						Cantxq list = JsonUtil.fromJson(
 								new String(responseBody), Cantxq.class);
 						modelData.onReturn(list);
@@ -232,7 +227,7 @@ public class RestClient {
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
 					byte[] responseBody) {
-
+				System.out.println("getFoodList-----"+new String(responseBody));
 				List<CaipBasic> list = JsonUtil.fromJson(new String(
 						responseBody), new TypeToken<List<CaipBasic>>() {
 				}.getType());
@@ -260,7 +255,7 @@ public class RestClient {
 					@Override
 					public void onSuccess(int statusCode, Header[] headers,
 							byte[] responseBody) {
-
+						System.out.println("getFoodDetail-----"+new String(responseBody));
 						Caipxq list = JsonUtil.fromJson(
 								new String(responseBody), Caipxq.class);
 						modelData.onReturn(list);
@@ -290,7 +285,7 @@ public class RestClient {
 					@Override
 					public void onSuccess(int statusCode, Header[] headers,
 							byte[] responseBody) {
-
+						System.out.println("getFoodCommentList-----"+new String(responseBody));
 						List<Pingl> list = JsonUtil.fromJson(new String(
 								responseBody), new TypeToken<List<Pingl>>() {
 						}.getType());
@@ -319,7 +314,7 @@ public class RestClient {
 					@Override
 					public void onSuccess(int statusCode, Header[] headers,
 							byte[] responseBody) {
-
+						System.out.println("getBusinessCommentList-----"+new String(responseBody));
 						List<Pingl> list = JsonUtil.fromJson(new String(
 								responseBody), new TypeToken<List<Pingl>>() {
 						}.getType());
@@ -344,6 +339,8 @@ public class RestClient {
 
 				@Override
 				public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+					
+					System.out.println("getFoodDetailImg-----"+new String(responseBody));
 					List<Taocmx> list = JsonUtil.fromJson(new String(responseBody), new TypeToken<List<Taocmx>>() {}.getType());
 					modelData.onReturn(list);
 				}
@@ -366,7 +363,7 @@ public class RestClient {
 					@Override
 					public void onSuccess(int statusCode, Header[] headers,
 							byte[] responseBody) {
-
+						System.out.println("getCustomerInfo-----"+new String(responseBody));
 						GukBasic list = JsonUtil.fromJson(new String(
 								responseBody), GukBasic.class);
 						modelData.onReturn(list);
@@ -394,7 +391,7 @@ public class RestClient {
 					@Override
 					public void onSuccess(int statusCode, Header[] headers,
 							byte[] responseBody) {
-
+						System.out.println("getOrderList-----"+new String(responseBody));
 						List<DingdBasic> list = JsonUtil.fromJson(new String(
 								responseBody),
 								new TypeToken<List<DingdBasic>>() {
@@ -423,7 +420,7 @@ public class RestClient {
 					@Override
 					public void onSuccess(int statusCode, Header[] headers,
 							byte[] responseBody) {
-
+						System.out.println("collectFood-----"+new String(responseBody));
 						Result list = JsonUtil.fromJson(
 								new String(responseBody), Result.class);
 						modelData.onReturn(list);
@@ -450,7 +447,7 @@ public class RestClient {
 					@Override
 					public void onSuccess(int statusCode, Header[] headers,
 							byte[] responseBody) {
-
+						System.out.println("collectBusiness-----"+new String(responseBody));
 						Result list = JsonUtil.fromJson(
 								new String(responseBody), Result.class);
 						modelData.onReturn(list);
@@ -478,7 +475,7 @@ public class RestClient {
 					@Override
 					public void onSuccess(int statusCode, Header[] headers,
 							byte[] responseBody) {
-
+						System.out.println("getHurry-----"+new String(responseBody));
 						Result list = JsonUtil.fromJson(
 								new String(responseBody), Result.class);
 						modelData.onReturn(list);
@@ -498,7 +495,7 @@ public class RestClient {
 			final String zhiffs, final String cantId, final String dingdmx,
 			final String peisf, final String duojf, final String shaojf,
 			final String duofl, final String shaofl, final String bufc,
-			final String bufs, final String bufj, final String buykz,
+			final String bufs, final String bufj, final String buykz, 
 			final IJsonModelData modelData) {
 		RequestParams params = new RequestParams();
 		params.put("gukdh", gukdh);
@@ -518,6 +515,7 @@ public class RestClient {
 		params.put("bufs", bufs);
 		params.put("bufj", bufj);
 		params.put("buykz", buykz);
+		
 		params.put("gukId", ActivityGlobal.getUserId());
 
 		Log.i(tag, "gukdh=" + gukdh);
@@ -529,24 +527,15 @@ public class RestClient {
 		Log.i(tag, "cantId=" + cantId);
 		Log.i(tag, "dingdmx=" + dingdmx);
 		Log.i(tag, "peisf=" + peisf);
-		Log.i(tag, "duojf=" + duojf);
-		Log.i(tag, "shaojf=" + shaojf);
-		Log.i(tag, "duofl=" + duofl);
-		Log.i(tag, "shaofl=" + shaofl);
-		Log.i(tag, "bufc=" + bufc);
-		Log.i(tag, "bufs=" + bufs);
-		Log.i(tag, "bufj=" + bufj);
-		Log.i(tag, "buykz=" + buykz);
 		Log.i(tag, "gukId=" + ActivityGlobal.getUserId());
 
-		client.post(getAbsoluteUrl(SUBMIT_ORDERS), params, // SUBMIT_ORDERS
-															// "http://192.168.1.175:8090/dingd/submitOrders"
+		client.post(getAbsoluteUrl(SUBMIT_ORDERS), params, 
 				new AsyncHttpResponseHandler() {
 
 					@Override
 					public void onSuccess(int statusCode, Header[] headers,
 							byte[] responseBody) {
-
+						System.out.println("submitOrders-----"+new String(responseBody));
 						GukBasic gukBasic = JsonUtil.fromJson(new String(
 								responseBody), GukBasic.class);
 						if (gukBasic == null) {
@@ -584,7 +573,7 @@ public class RestClient {
 					@Override
 					public void onSuccess(int statusCode, Header[] headers,
 							byte[] responseBody) {
-
+						System.out.println("getOrderCommentList-----"+new String(responseBody));
 						Dingddp list = JsonUtil.fromJson(new String(
 								responseBody), Dingddp.class);
 						modelData.onReturn(list);
@@ -599,6 +588,7 @@ public class RestClient {
 				});
 	}
 
+
 	public static void addOrderComment(final String dingdId,
 			final String pingl, final IJsonModelData modelData) {
 		RequestParams params = new RequestParams();
@@ -611,6 +601,7 @@ public class RestClient {
 
 					@Override
 					public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+						System.out.println("addOrderComment-----"+new String(responseBody));
 						Result list = JsonUtil.fromJson(new String(responseBody), Result.class);
 						modelData.onReturn(list);
 					}
@@ -622,6 +613,19 @@ public class RestClient {
 				});
 	}
 
+	/**
+	 * 绑定账号
+	 * @param qqh
+	 * @param weibm
+	 * @param dianh1
+	 * @param dianh2
+	 * @param diz1
+	 * @param diz2
+	 * @param diz3
+	 * @param diz4
+	 * @param diz5
+	 * @param modelData
+	 */
 	public static void bindAccount(final String qqh, final String weibm,
 			final String dianh1, final String dianh2, final String diz1,
 			final String diz2, final String diz3, final String diz4,
@@ -642,7 +646,7 @@ public class RestClient {
 
 					@Override
 					public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-						// System.out.println(new String(responseBody));
+						System.out.println("bindAccount-----"+new String(responseBody));
 						GukBasic list = JsonUtil.fromJson(new String(responseBody), GukBasic.class);
 						modelData.onReturn(list);
 					}
@@ -655,8 +659,11 @@ public class RestClient {
 				});
 	}
 	
-	
-
+	/**
+	 * 获得用户反馈
+	 * @param gukfk
+	 * @param modelData
+	 */
 	public static void feedBack(final String gukfk, final IJsonModelData modelData) {
 		RequestParams params = new RequestParams();
 		params.put("gukfk", gukfk);
@@ -665,7 +672,7 @@ public class RestClient {
 		client.post(getAbsoluteUrl(FEED_BACK), params, new AsyncHttpResponseHandler() {
 					@Override
 					public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-						System.out.println(new String(responseBody));
+						System.out.println("feedBack-----"+new String(responseBody));
 						Result list = JsonUtil.fromJson(new String(responseBody), Result.class);
 						modelData.onReturn(list);
 					}
@@ -677,15 +684,17 @@ public class RestClient {
 				});
 	}
 	
-	
-
+	/**
+	 * 获得最新版本信息
+	 * @param modelData
+	 */
 	public static void getLatestVersion(final IJsonModelData modelData) {
 
 		client.get(getAbsoluteUrl(GET_VERSION), new AsyncHttpResponseHandler() {
 
 			@Override
 			public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-				System.out.println(new String(responseBody));
+				System.out.println("getLatestVersion-----"+new String(responseBody));
 				Banb list = JsonUtil.fromJson(new String(responseBody), Banb.class);
 				modelData.onReturn(list);
 			}
@@ -698,23 +707,21 @@ public class RestClient {
 		});
 	}
 	
-	
-	
-	
-	
+	/**
+	 * 获取首页基本信息
+	 * @param modelData
+	 */
 	public static void getIndexData(final IJsonModelData modelData) {
 		RequestParams params = new RequestParams();
-//		params.put("guk_id", "F61EA815-5651-4638-B85A-8B90DC2E0DE9");
-//		params.put("guk_id", ActivityGlobal.getUserId());
-		params.put("guk_id", "163E594D-14DD-46AC-811C-7F657867960E");
+		params.put("guk_id", ActivityGlobal.getUserId());
+//		params.put("guk_id", "DEE835F6-6D20-47FF-9905-5EEF1A07AD23");
 		
 
 		client.get(getAbsoluteUrl(GET_SHOUY), params, new AsyncHttpResponseHandler() {
 			@Override
 			public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
 				
-				System.out.println(new String(responseBody));
-				
+				System.out.println("getShouyData-----"+new String(responseBody));
 				Shouy list = JsonUtil.fromJson(new String(responseBody), Shouy.class);
 				modelData.onReturn(list);
 			}
@@ -725,17 +732,17 @@ public class RestClient {
 			}
 		});
 	}
-	
-	
-	
-	
-	
-	
-	
+
+	/**
+	 * 文件上传下载
+	 * @param riq
+	 * @param path
+	 * @param modelData
+	 * @throws Exception
+	 */
 	public static void uploadFile(
 			String riq,
 			String path,
-			String caip_id,
 			final IJsonModelData modelData) throws Exception {  
 		File file = new File(path);  
 		if (file.exists() && file.length() > 0) {  
@@ -743,17 +750,16 @@ public class RestClient {
 		    RequestParams params = new RequestParams();   
 		    params.put("riq", riq);  
 		    params.put("zhaop", file);
-		    params.put("type", "iloveyou"); 
-//		    params.put("guk_id",ActivityGlobal.getUserId());
-			params.put("guk_id", "163E594D-14DD-46AC-811C-7F657867960E");
-		    params.put("caip_id", "56AA2B9E-6EF2-41CB-B10E-DD0CF8C7C229");  
+//		    params.put("type", "iloveyou"); 
+		    params.put("guk_id",ActivityGlobal.getUserId());
+//			params.put("guk_id", "DEE835F6-6D20-47FF-9905-5EEF1A07AD23");
 		    
 		    // 上传文件  
 		    client.post(getAbsoluteUrl(UPLOAD_PHOTO), params, new AsyncHttpResponseHandler() {  
 		        @Override  
 		        public void onSuccess(int statusCode, Header[] headers,  
 		                byte[] responseBody) {  
-		        	
+		        	System.out.println("uploadFile-----"+new String(responseBody));
 					Result list = JsonUtil.fromJson(
 							new String(responseBody), Result.class);
 					modelData.onReturn(list);
@@ -774,9 +780,8 @@ public class RestClient {
 		        
 		        @Override  
 		        public void onProgress(int bytesWritten, int totalSize) {  
-		            // TODO Auto-generated method stub  
 		            super.onProgress(bytesWritten, totalSize);  
-		            int count = (int) ((bytesWritten * 1.0 / totalSize) * 100);  
+//		            int count = (int) ((bytesWritten * 1.0 / totalSize) * 100);  
 		            // 上传进度显示  
 //		            progress.setProgress(count);  
 //		            Log.e("上传 Progress>>>>>", bytesWritten + " / " + totalSize);  
@@ -784,7 +789,6 @@ public class RestClient {
 		  
 //		        @Override  
 //		        public void onRetry(int retryNo) {  
-//		            // TODO Auto-generated method stub  
 //		            super.onRetry(retryNo);  
 //		            // 返回重试次数  
 //		        }  
@@ -796,17 +800,19 @@ public class RestClient {
 //		}  
 	}
 	
-	
-	
-	
-	
-	
-	
+   /**
+    * 插入顾客体重
+    * 
+    * @param riq
+    * @param guktz
+    * @param zhuangt
+    * @param modelData
+    * @throws Exception
+    */
 	public static void insertGuktz(
 			String riq,
 			float guktz,
 			String zhuangt,
-			String caip_id,
 			final IJsonModelData modelData) throws Exception {  
 		
 		    AsyncHttpClient client = new AsyncHttpClient();  
@@ -814,16 +820,15 @@ public class RestClient {
 		    params.put("riq", riq);  
 		    params.put("tiz", Float.toString(guktz));
 		    params.put("zhuangt", zhuangt); 
-//		    params.put("guk_id", ActivityGlobal.getUserId());
-			params.put("guk_id", "163E594D-14DD-46AC-811C-7F657867960E");
-		    params.put("caip_id", "56AA2B9E-6EF2-41CB-B10E-DD0CF8C7C229");  
+		    params.put("guk_id", ActivityGlobal.getUserId());
+//			params.put("guk_id", "DEE835F6-6D20-47FF-9905-5EEF1A07AD23");
 		    
 		    // 上传文件  
 		    client.post(getAbsoluteUrl(UPLOAD_GUKTZ), params, new AsyncHttpResponseHandler() {  
 		        @Override  
 		        public void onSuccess(int statusCode, Header[] headers,  
 		                byte[] responseBody) {  
-		        	
+					System.out.println("insertGuktz-----"+new String(responseBody));
 					Result list = JsonUtil.fromJson(
 							new String(responseBody), Result.class);
 					modelData.onReturn(list);
@@ -839,31 +844,20 @@ public class RestClient {
 		    });  
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	/**
+	 * 顾客相册列表
+	 * @param modelData
+	 */
 	public static void getGukxcList(final IJsonModelArrayData modelData) {
 		RequestParams params = new RequestParams();
-//		params.put("guk_id", ActivityGlobal.getUserId());
-		params.put("guk_id", "163E594D-14DD-46AC-811C-7F657867960E");
+		params.put("guk_id", ActivityGlobal.getUserId());
+//		params.put("guk_id", "DEE835F6-6D20-47FF-9905-5EEF1A07AD23");
 
 		client.get(getAbsoluteUrl(GET_GUKXC), params, new AsyncHttpResponseHandler() {
 				@Override
 				public void onSuccess(int statusCode, Header[] headers,
 						byte[] responseBody) {
-
+					System.out.println("getGukxcList-----"+new String(responseBody));
 					List<Gukxc> list = JsonUtil.fromJson(new String(
 							responseBody), new TypeToken<List<Gukxc>>() {
 					}.getType());
@@ -880,18 +874,20 @@ public class RestClient {
 		}
 
 	
-	
+	/**
+	 * 顾客体重列表
+	 * @param modelData
+	 */
 	public static void getGuktzList(final IJsonModelArrayData modelData) {
+		
 		RequestParams params = new RequestParams();
-//		params.put("guk_id", ActivityGlobal.getUserId());
-			
-		params.put("guk_id", "163E594D-14DD-46AC-811C-7F657867960E");
-
+		params.put("guk_id", ActivityGlobal.getUserId());
 		client.get(getAbsoluteUrl(GET_GUKTZ), params, new AsyncHttpResponseHandler() {
 				@Override
 				public void onSuccess(int statusCode, Header[] headers,
 						byte[] responseBody) {
-
+					
+					System.out.println("getGuktzList-----"+new String(responseBody));
 					List<Guktz> list = JsonUtil.fromJson(new String(
 							responseBody), new TypeToken<List<Guktz>>() {
 					}.getType());

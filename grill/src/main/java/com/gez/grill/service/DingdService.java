@@ -121,14 +121,7 @@ public class DingdService {
 		customer.setMordz(mordz);
 		customer.setZongdcfs(zongfs);
 		customer.setZongdcje(feiy);
-		customer.setDuojf(duojf);
-		customer.setShaojf(shaojf);
-		customer.setDuofl(duofl);
-		customer.setShaofl(shaofl);
-		customer.setBufc(bufc);
-		customer.setBufs(bufs);
-		customer.setBufj(bufj);
-		customer.setBuykz(buykz);
+
 
 		ArrayList<String> address = new ArrayList<String>();
 		if (diz1 != null && !diz1.equals("") && !diz1.equals(gukscdz)) {
@@ -226,6 +219,7 @@ public class DingdService {
 		dingd.setBuykz(buykz);
 		dingd.setGukId(gukId);
 		dingd.setCantId(cantId);
+		dingd.setShiffk("1");
 
 		/* 构造订单内容类 */
 		int tiCount = dingdmxtj.size();
@@ -269,8 +263,8 @@ public class DingdService {
 
 		cantInstance.updateRestaurantData(restaurantData);
 		gukInstance.updateCustomerData(customerData);
-
-		tuisInstance.push2BusinessForWeix(gukdh, gukscdz, cantId, dingdmxtj);
+		//暂时注释掉推送功能
+//		tuisInstance.push2BusinessForWeix(gukdh, gukscdz, cantId, dingdmxtj);
 		return true;
 	}
 

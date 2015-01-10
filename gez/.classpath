@@ -9,7 +9,6 @@
 	<classpathentry kind="lib" path="libs/locSDK_4.1.jar"/>
 	<classpathentry kind="lib" path="libs/open_sdk.jar"/>
 	<classpathentry kind="lib" path="libs/mta-sdk-1.0.0.jar"/>
-	<classpathentry kind="lib" path="libs/achartengine-1.1.0.jar"/>
 	<classpathentry exported="true" kind="src" path="/WeiboSDK"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/abs-library"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/sliding-library"/>

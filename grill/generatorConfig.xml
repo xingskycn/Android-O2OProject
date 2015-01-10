@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
 <generatorConfiguration >
-  <classPathEntry location="D:\apache-maven-3.0.4\repository\com\microsoft\sqlserver\sqljdbc4\4.0\sqljdbc4-4.0.jar"/>
+  <!-- classPathEntry:数据库的JDBC驱动的jar包地址 -->
+  <classPathEntry location="D:\Development\apache-maven-3.0.4\repository\com\microsoft\sqlserver\sqljdbc4\4.0\sqljdbc4-4.0.jar"/>
+  <!-- 一个数据库一个context -->
   <context id="context1" >
-    <jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver" connectionURL="jdbc:sqlserver://localhost:1433;databaseName=grill;integratedSecurity=false" userId="sa" password="123456" />
-    <javaModelGenerator targetPackage="com.gez.grill.entity" targetProject="grill" />
-    <sqlMapGenerator targetPackage="com.gez.grill.service" targetProject="grill" />
-    <javaClientGenerator targetPackage="com.gez.grill.mapper" targetProject="grill" type="XMLMAPPER" />
-    <table domainObjectName="dingd" tableName="dingd"
+    <!-- 取消所有注释 -->
+    <commentGenerator>
+        <property name="suppressAllComments" value="true"/>
+    </commentGenerator>
+    <!-- jdbc连接 -->
+    <jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver" connectionURL="jdbc:sqlserver://112.124.55.129;databaseName=StewAlpha02;integratedSecurity=false" userId="sa" password="Tracert123456" />
+    <!-- 生成实体类的位置 -->
+    <javaModelGenerator targetPackage="com.gez.grill.entity" targetProject="grill/src/main/java" />
+    <!-- 生成mybatis的xml文件的位置 -->
+    <sqlMapGenerator targetPackage="com.gez.grill.mapper" targetProject="grill/src/main/resources" />
+    <!-- 生成xml对应的接口dao -->
+    <javaClientGenerator targetPackage="com.gez.grill.mapper" targetProject="grill/src/main/java" type="XMLMAPPER" />
+    <!-- domainObjectName为要生成的实体类，tableName为对应的数据库表，如果想要mapper配置文件加入sql的where条件查询, 可以将enableCountByExample等设为true, 
+			这样就会生成一个对应domainObjectName的Example类 -->
+    <table domainObjectName="Guk" tableName="guk"
     	   enableSelectByExample="false"
     	   enableDeleteByExample="false"
     	   enableCountByExample="false"

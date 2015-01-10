@@ -14,7 +14,7 @@ public interface ShouyMapper {
 	/*
 	 * 首页基本信息 2014-9-29
 	 */
-	ArrayList<ShouyBasic> getShouyBasicList(String params);
+	ShouyBasic getShouyBasicList(String params);
 	
 	/*
 	 * 套餐明细列表 2014-9-29

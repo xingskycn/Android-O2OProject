@@ -104,7 +104,7 @@
 			cuidcs, duojf, shaojf,
 			duofl, shaofl, bufc,
 			bufs, bufj, buykz, 
-			guk_id, cant_id)
+			guk_id, cant_id, shiffk)
 		VALUES (#{id,jdbcType=CHAR}, #{bianh,jdbcType=NCHAR}, #{dingdzt,jdbcType=NCHAR}, 
 			#{dianpzt,jdbcType=NCHAR}, getdate(), #{quersj,jdbcType=TIMESTAMP},
 			#{xiacsj,jdbcType=TIMESTAMP}, #{waissj,jdbcType=TIMESTAMP}, #{songdsj,jdbcType=TIMESTAMP},
@@ -115,7 +115,7 @@
 			#{cuidcs,jdbcType=BIT}, #{duojf,jdbcType=BIT}, #{shaojf,jdbcType=BIT},
 			#{duofl,jdbcType=BIT}, #{shaofl,jdbcType=BIT}, #{bufc,jdbcType=BIT},
 			#{bufs,jdbcType=BIT}, #{bufj,jdbcType=BIT}, #{buykz,jdbcType=CHAR},
-			#{gukId,jdbcType=CHAR}, #{cantId,jdbcType=CHAR})
+			#{gukId,jdbcType=CHAR}, #{cantId,jdbcType=CHAR}, #{shiffk,jdbcType=NCHAR})
 	</insert>
 	
 	<!--催单-->

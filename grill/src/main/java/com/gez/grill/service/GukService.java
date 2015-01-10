@@ -28,38 +28,28 @@ public class GukService {
 		return gukInstance.getCustomerInfo(gukId);
 	}
 
+	/*
+	 * 数据库中没有当前gukid时
+	 */
 	@Transactional
 	public void newCustomerComming(String gukId) {
 		Guk newCommer = new Guk();
+		// 给guk表以下7个字段赋初始值
 		newCommer.setId(gukId);
-		newCommer.setWeixh("未绑定");
-		newCommer.setWeixm("未绑定");
-		newCommer.setWeibm("未绑定");
-		newCommer.setQqh("未绑定");
-		newCommer.setZhangh("新账号");
-		newCommer.setZhuangt("正常");
 		newCommer.setXingm("新用户");
+		newCommer.setZhuangt("正常");
 		newCommer.setZongdccs(0);
 		newCommer.setZongdcfs(0);
 		newCommer.setZongdcje(new BigDecimal("0"));
-		newCommer.setDuojf(false);
-		newCommer.setShaojf(false);
-		newCommer.setDuofl(false);
-		newCommer.setShaofl(false);
-		newCommer.setBufc(false);
-		newCommer.setBufs(false);
-		newCommer.setBufj(false);
-		newCommer.setBuykz(false);
-
+		newCommer.setZhuangt("未绑定");
 		gukInstance.newCustomerComming(newCommer);
 	}
 
 	@Transactional
-	public GukBasic bindAccount(String gukId, String weibm, String qqh,
-			String dianh1, String dianh2, String diz1, String diz2,
-			String diz3, String diz4, String diz5) {
-		String weib_id = "";
-		String qq_id = "";
+	public GukBasic bindAccount(String gukId, String weixh, String weixm, String dianh1,
+			String dianh2, String diz1, String diz2, String diz3, String diz4,
+			String diz5) {
+		String weix_id = "";
 
 		/* 获取当前用户的信息 */
 		GukBasic customerInfo = gukInstance.getCustomerInfo(gukId);
@@ -72,25 +62,20 @@ public class GukService {
 		customerInfo.setDiz5(diz5);
 
 		/* 搜索该微博或qq曾经是否被绑定过 */
-		if (weibm != null && !weibm.equals("")) {
-			weib_id = gukInstance.isCustomerBind(weibm);
-		}
-		if (qqh != null && !qqh.equals("")) {
-			qq_id = gukInstance.isCustomerBind(qqh);
+		if (weixh != null && !weixh.equals("")) {
+			weix_id = gukInstance.isCustomerBind(weixh);
 		}
 
 		/* 如果被绑定过，则合并数据 */
-		if ((weib_id != null && !weib_id.equals("")) || (qq_id != null && (!qq_id.equals("")))) {
+		if ((weix_id != null && !weix_id.equals(""))) {
 			HashMap<String, String> paramsForMerger = new HashMap<String, String>();
 			paramsForMerger.put("oldId", gukId);
 
 			String newId = "";
-			if (weib_id != null && !weib_id.equals("")) {
-				newId = weib_id;
+			if (weix_id != null && !weix_id.equals("")) {
+				newId = weix_id;
 			}
-			if (qq_id != null && !qq_id.equals("")) {
-				newId = qq_id;
-			}
+
 			paramsForMerger.put("newId", newId);
 
 			if (!newId.equals(gukId)) {
@@ -101,10 +86,12 @@ public class GukService {
 				ArrayList<String> address = new ArrayList<String>();
 				ArrayList<String> phones = new ArrayList<String>();
 
-				if (dianh1 != null && !dianh1.equals("") && !phones.contains(dianh1)) {
+				if (dianh1 != null && !dianh1.equals("")
+						&& !phones.contains(dianh1)) {
 					phones.add(dianh1);
 				}
-				if (dianh2 != null && !dianh2.equals("") && !phones.contains(dianh2)) {
+				if (dianh2 != null && !dianh2.equals("")
+						&& !phones.contains(dianh2)) {
 					phones.add(dianh2);
 				}
 				if (diz1 != null && !diz1.equals("") && !address.contains(diz1)) {
@@ -133,25 +120,32 @@ public class GukService {
 				String olddiz4 = usedInfo.getDiz4();
 				String olddiz5 = usedInfo.getDiz5();
 
-				if (olddianh1 != null && !olddianh1.equals("") && !phones.contains(olddianh1)) {
+				if (olddianh1 != null && !olddianh1.equals("")
+						&& !phones.contains(olddianh1)) {
 					phones.add(olddianh1);
 				}
-				if (olddianh2 != null && !olddianh2.equals("") && !phones.contains(olddianh2)) {
+				if (olddianh2 != null && !olddianh2.equals("")
+						&& !phones.contains(olddianh2)) {
 					phones.add(olddianh2);
 				}
-				if (olddiz1 != null && !olddiz1.equals("") && !address.contains(olddiz1)) {
+				if (olddiz1 != null && !olddiz1.equals("")
+						&& !address.contains(olddiz1)) {
 					address.add(olddiz1);
 				}
-				if (olddiz2 != null && !olddiz2.equals("") && !address.contains(olddiz2)) {
+				if (olddiz2 != null && !olddiz2.equals("")
+						&& !address.contains(olddiz2)) {
 					address.add(olddiz2);
 				}
-				if (olddiz3 != null && !olddiz3.equals("") && !address.contains(olddiz3)) {
+				if (olddiz3 != null && !olddiz3.equals("")
+						&& !address.contains(olddiz3)) {
 					address.add(olddiz3);
 				}
-				if (olddiz4 != null && !olddiz4.equals("") && !address.contains(olddiz4)) {
+				if (olddiz4 != null && !olddiz4.equals("")
+						&& !address.contains(olddiz4)) {
 					address.add(olddiz4);
 				}
-				if (olddiz5 != null && !olddiz5.equals("") && !address.contains(olddiz5)) {
+				if (olddiz5 != null && !olddiz5.equals("")
+						&& !address.contains(olddiz5)) {
 					address.add(olddiz5);
 				}
 
@@ -174,21 +168,23 @@ public class GukService {
 
 			customerInfo.setId(newId);
 		}
-
+		
 		/* 如果没有，更新他的微博或qq */
-		if (weibm != null && !weibm.equals("")) {
-			customerInfo.setWeibm(weibm);
+		if (weixm != null && !weixm.equals("")) {
+			customerInfo.setWeixm(weixm);
 		}
-		if (qqh != null && !qqh.equals("")) {
-			customerInfo.setQqh(qqh);
+		if (weixh != null && !weixh.equals("")) {
+			customerInfo.setWeixh(weixh);
 		}
 
 		/* 修改默认电话 */
-		if (customerInfo.getDianh1() != null && !customerInfo.getDianh1().equals("")) {
+		if (customerInfo.getDianh1() != null
+				&& !customerInfo.getDianh1().equals("")) {
 			customerInfo.setMordh(customerInfo.getDianh1());
 		}
 		/* 修改默认地址 */
-		if (customerInfo.getDiz1() != null && !customerInfo.getDiz1().equals("")) {
+		if (customerInfo.getDiz1() != null
+				&& !customerInfo.getDiz1().equals("")) {
 			customerInfo.setMordz(customerInfo.getDiz1());
 		}
 
@@ -219,12 +215,12 @@ public class GukService {
 		params.put("gukfk", gukfk);
 		gukInstance.feedback(params);
 	}
-	
-	public Banb getVersion(){
+
+	public Banb getVersion() {
 		return gukInstance.getVersion();
 	}
-	
-	public List<String> getCustomerOpenId(String cantId){
+
+	public List<String> getCustomerOpenId(String cantId) {
 		return gukInstance.getCustomerOpenId(cantId);
 	}
 }

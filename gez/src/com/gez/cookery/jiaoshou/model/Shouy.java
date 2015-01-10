@@ -11,7 +11,7 @@ public class Shouy extends JsonModel {
 	private String dingd_id;
 	
 	private String caip_id;
-
+	
 	private ArrayList<Taocmx> taocmx = new ArrayList<Taocmx>();
 
 	private ArrayList<Guktz> guktz = new ArrayList<Guktz>();
@@ -73,7 +73,5 @@ public class Shouy extends JsonModel {
 	public void setCaip_id(String caip_id) {
 		this.caip_id = caip_id;
 	}
-
-	
 	
 }

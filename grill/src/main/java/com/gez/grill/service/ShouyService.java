@@ -22,7 +22,7 @@ public class ShouyService {
 	/*
 	 * 订单列表
 	 */
-	public ArrayList<ShouyBasic> getShouyBasicList(String guk_id) {
+	public ShouyBasic getShouyBasicList(String guk_id) {
 		return shouyInstance.getShouyBasicList(guk_id);
 
 	}

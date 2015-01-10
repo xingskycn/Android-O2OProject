@@ -3,5 +3,9 @@
     <issue id="DefaultLocale">
         <ignore path="src/com/gez/cookery.jiaoshou/util/TencentUtil.java" />
     </issue>
-    <issue id="NewApi" severity="ignore" />
+    <issue id="InflateParams" severity="ignore" />
+    <issue id="NewApi">
+        <ignore path="src/com/gez/cookery/jiaoshou/adapter/FancyCoverFlowSampleAdapter.java" />
+    </issue>
+    <issue id="SdCardPath" severity="ignore" />
 </lint>

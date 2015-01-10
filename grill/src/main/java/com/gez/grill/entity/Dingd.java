@@ -67,6 +67,16 @@ public class Dingd {
 	private String gukId;
 
 	private String cantId;
+	
+	private String shiffk;
+
+	public String getShiffk() {
+		return shiffk;
+	}
+
+	public void setShiffk(String shiffk) {
+		this.shiffk = shiffk;
+	}
 
 	public String getId() {
 		return id;

@@ -104,7 +104,7 @@ public class MainFragment extends SherlockFragment implements
 
 			switch (paramInt) {
 			default:
-			case R.id.home_button_food:
+			case R.id.home_button_food:	//订购按钮
 				if (foodListFragment == null) {
 					foodListFragment = new FoodListFragment();
 					foodListFragment.setFoodType(EnmFoodType.food_default);
@@ -113,18 +113,6 @@ public class MainFragment extends SherlockFragment implements
 				}
 				fragment = foodListFragment;
 				break;
-				
-				
-//			case R.id.home_button_collect:
-//				if (collectFoodFragment == null) {
-//					collectFoodFragment = new FoodListFragment();
-//					collectFoodFragment.setFoodType(EnmFoodType.food_favorite);
-//					collectFoodFragment.setBusinessId(businessId);
-//					collectFoodFragment.setMainFragment(this);
-//				}
-//				fragment = collectFoodFragment;
-//				break;
-				
 				
 			case R.id.home_button_face:
 				if (firstPaperFragment == null) {

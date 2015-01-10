@@ -314,21 +314,10 @@ public class SubmitOrderActivity extends BaseActivity implements ISelectValue {
 								user.setDiz3(userInfo.getDiz3());
 								user.setDiz4(userInfo.getDiz4());
 								user.setDiz5(userInfo.getDiz5());
-								user.setQqh(userInfo.getQqh());
-								user.setWeibm(userInfo.getWeibm());
 								user.setMordh(userInfo.getMordh());
 								user.setMordz(userInfo.getMordz());
-								user.setZhangh(userInfo.getZhangh());
 								user.setDianh1(userInfo.getDianh1());
 								user.setDianh2(userInfo.getDianh2());
-								user.setDuofl(userInfo.isDuofl());
-								user.setShaofl(userInfo.isShaofl());
-								user.setDuojf(userInfo.isDuojf());
-								user.setShaojf(userInfo.isShaojf());
-								user.setBufc(userInfo.isBufc());
-								user.setBufj(userInfo.isBufj());
-								user.setBufs(userInfo.isBufs());
-								user.setBuykz(userInfo.isBuykz());
 								UIHelper.showToast(SubmitOrderActivity.this, "提交订单成功.");
 								
 								// 发送广播消息

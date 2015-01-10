@@ -3,16 +3,18 @@ package com.gez.cookery.jiaoshou.model;
 public class GukBasic extends JsonModel {
 	private String id;
 
-	private String weibm;
+	private String xingm;
 
-	private String qqh;
-
-	private String zhangh;
+	private String zhucrq;
 
 	private String mordz;
 
 	private String mordh;
+	
+	private String weixh;
 
+	private String weixm;
+	
 	private String dianh1;
 
 	private String dianh2;
@@ -27,25 +29,51 @@ public class GukBasic extends JsonModel {
 
 	private String diz5;
 
-	private boolean duojf;
-
-	private boolean shaojf;
-
-	private boolean duofl;
-
-	private boolean shaofl;
-
-	private boolean bufc;
-
-	private boolean bufs;
-
-	private boolean bufj;
-
-	private boolean buykz;
-
 	private int zongdcfs;
+	
+	private int zongdccs;
 
 	private float zongdcje;
+
+	public String getXingm() {
+		return xingm;
+	}
+
+	public void setXingm(String xingm) {
+		this.xingm = xingm;
+	}
+
+	public String getZhucrq() {
+		return zhucrq;
+	}
+
+	public void setZhucrq(String zhucrq) {
+		this.zhucrq = zhucrq;
+	}
+
+	public String getWeixh() {
+		return weixh;
+	}
+
+	public void setWeixh(String weixh) {
+		this.weixh = weixh;
+	}
+
+	public String getWeixm() {
+		return weixm;
+	}
+
+	public void setWeixm(String weixm) {
+		this.weixm = weixm;
+	}
+
+	public int getZongdccs() {
+		return zongdccs;
+	}
+
+	public void setZongdccs(int zongdccs) {
+		this.zongdccs = zongdccs;
+	}
 
 	public String getId() {
 		return id;
@@ -53,30 +81,6 @@ public class GukBasic extends JsonModel {
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public String getWeibm() {
-		return weibm;
-	}
-
-	public void setWeibm(String weibm) {
-		this.weibm = weibm;
-	}
-
-	public String getQqh() {
-		return qqh;
-	}
-
-	public void setQqh(String qqh) {
-		this.qqh = qqh;
-	}
-
-	public String getZhangh() {
-		return zhangh;
-	}
-
-	public void setZhangh(String zhangh) {
-		this.zhangh = zhangh;
 	}
 
 	public String getMordz() {
@@ -149,70 +153,6 @@ public class GukBasic extends JsonModel {
 
 	public void setDiz5(String diz5) {
 		this.diz5 = diz5;
-	}
-
-	public boolean isDuojf() {
-		return duojf;
-	}
-
-	public void setDuojf(boolean duojf) {
-		this.duojf = duojf;
-	}
-
-	public boolean isShaojf() {
-		return shaojf;
-	}
-
-	public void setShaojf(boolean shaojf) {
-		this.shaojf = shaojf;
-	}
-
-	public boolean isDuofl() {
-		return duofl;
-	}
-
-	public void setDuofl(boolean duofl) {
-		this.duofl = duofl;
-	}
-
-	public boolean isShaofl() {
-		return shaofl;
-	}
-
-	public void setShaofl(boolean shaofl) {
-		this.shaofl = shaofl;
-	}
-
-	public boolean isBufc() {
-		return bufc;
-	}
-
-	public void setBufc(boolean bufc) {
-		this.bufc = bufc;
-	}
-
-	public boolean isBufs() {
-		return bufs;
-	}
-
-	public void setBufs(boolean bufs) {
-		this.bufs = bufs;
-	}
-
-	public boolean isBufj() {
-		return bufj;
-	}
-
-	public void setBufj(boolean bufj) {
-		this.bufj = bufj;
-	}
-
-	public boolean isBuykz() {
-		return buykz;
-	}
-
-	public void setBuykz(boolean buykz) {
-		this.buykz = buykz;
 	}
 
 	public int getZongdcfs() {
