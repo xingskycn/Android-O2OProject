@@ -24,7 +24,7 @@ public class RestClient {
 //	private static final String BASE_URL = "http://192.168.1.229:8070/";
 	
 //	private static final String BASE_URL = "http://alpha.glassware.stew.lysp.biz/";
-	 private static final String BASE_URL = "http://192.168.0.105:8080/";
+	 private static final String BASE_URL = "http://192.168.169.9:8080/";
 
 	// private static final String BASE_IMAGE_URL =
 	// "http://192.168.1.92:8090/resources/files/";
@@ -243,6 +243,7 @@ public class RestClient {
 		});
 	}
 
+	//获得菜品详情
 	public static void getFoodDetail(final String caipId,
 			final IJsonModelData modelData) {
 		RequestParams params = new RequestParams();

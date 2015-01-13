@@ -113,7 +113,7 @@ public class FoodListFragment extends SherlockFragment {
 		
 		
 		
-		
+		//滑动到底部的监听事件
 		lvListView.setOnScrollListener(new AbsListView.OnScrollListener() {
 			public void onScrollStateChanged(AbsListView view, int scrollState) {
 				lvListView.onScrollStateChanged(view, scrollState);
@@ -141,6 +141,7 @@ public class FoodListFragment extends SherlockFragment {
 					lvListView_foot_progress.setVisibility(View.VISIBLE);
 					// 当前pageIndex
 					int pageIndex = lvListViewSumData / RestClient.PAGE_SIZE;
+					// 加载数据
 					loadLvListViewData(pageIndex,
 							EnmListViewAction.LISTVIEW_ACTION_SCROLL);
 				}
@@ -156,10 +157,11 @@ public class FoodListFragment extends SherlockFragment {
 		
 		lvListView.setOnRefreshListener(new PullToRefreshListView.OnRefreshListener() {
 			public void onRefresh() {
+				// 加载数据
 				loadLvListViewData(0, EnmListViewAction.LISTVIEW_ACTION_REFRESH);
 			}
 		});
-
+		// 加载数据
 		loadLvListViewData(0, EnmListViewAction.LISTVIEW_ACTION_INIT);
 	}
 
@@ -198,6 +200,7 @@ public class FoodListFragment extends SherlockFragment {
 						lvListView_foot_more.setText(R.string.load_full);
 					} else if (size == RestClient.PAGE_SIZE) {
 						lvListView.setTag(EnmListViewData.LISTVIEW_DATA_MORE);
+						//动态更新ListView
 						lvListViewAdapter.notifyDataSetChanged();
 						lvListView_foot_more.setText(R.string.load_more);
 					}

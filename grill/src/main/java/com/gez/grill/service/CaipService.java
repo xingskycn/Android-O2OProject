@@ -58,7 +58,10 @@ public class CaipService {
 
 		return caipInstance.getSpecialDishesList(params);
 	}
-
+	/*
+	 * 获取菜品详情
+	 * 2014-10-21
+	 */
 	public Caipxq getDishesDetail(String caipId, String gukId) {
 		HashMap<String, String> params = new HashMap<String, String>();
 		params.put("caipId", caipId);

@@ -18,6 +18,10 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+/***
+ * 确认订单
+ *
+ */
 public class MakeOrderActivity extends BaseActivity implements IChangeOrder {
 
 	//确定按钮
