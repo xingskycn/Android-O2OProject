@@ -11,6 +11,10 @@ WeChat Public Account Development
  
 Android端主要有网上订餐、查看与管理订单等线上流程，以及菜品展示、客户减肥曲线绘制等功能，
 
+UI与流程示例：
+
+
+
 
 项目所使用到的开源框架主要有：
 
