@@ -12,8 +12,37 @@ WeChat Public Account Development
 Android端主要有网上订餐、查看与管理订单等线上流程，以及菜品展示、客户减肥曲线绘制等功能，
 
 UI与流程示例：
+`首页`:
+界面完善ing，包括已订购的菜品图片展示，用户的体重曲线记录
+![qq 20141231145232](http://d.pcs.baidu.com/thumbnail/591f10b1834cd092739e4f7185af26d1?fid=2401028482-250528-736845379870398&time=1421924400&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-LITn8UU%2FAEleCLlq%2B1rBp30PF0U%3D&rt=sh&expires=2h&r=569839469&sharesign=unknown&size=c710_u500&quality=100)
+
+体重动态输入，并实时显示在曲线上
+
+![qq 20141231145232](http://d.pcs.baidu.com/thumbnail/51098811d63db084acb00b67aa4015c6?fid=2401028482-250528-419644106692651&time=1421924400&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-N0URKuqrcFk8%2FCyA5EjoEVt1A9g%3D&rt=sh&expires=2h&r=199199886&sharesign=unknown&size=c710_u500&quality=100)
+
+![qq 20141231145232](http://d.pcs.baidu.com/thumbnail/b87f9e0c0beac12ba839fa8cfab8ce41?fid=2401028482-250528-545640638196077&time=1421924400&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-xSXMz7XzmDPQHy5Sq1DoHzvBLpg%3D&rt=sh&expires=2h&r=687047860&sharesign=unknown&size=c710_u500&quality=100)
+
+`下单`
+点击订购菜单，listview展示套餐列表
+
+![qq 20141231145232](http://d.pcs.baidu.com/thumbnail/88bb0dc74fe399c50d176bc3b510cff2?fid=2401028482-250528-240705978364863&time=1421924400&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-YjkUCG%2Fan38IB4iHKx4c2c0xWYc%3D&rt=sh&expires=2h&r=576291218&sharesign=unknown&size=c710_u500&quality=100)
+
+点击金额按钮，进入订单确认页
+
+![qq 20141231145232](http://d.pcs.baidu.com/thumbnail/39d3d2a828d3a16ac93f8687e86155b0?fid=2401028482-250528-349116543864744&time=1421924400&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-lRv7%2B%2FI%2BUywsLJdkWbMI8eGKGag%3D&rt=sh&expires=2h&r=557817791&sharesign=unknown&size=c710_u500&quality=100)
+
+输入顾客信息，提交订单
+
+![qq 20141231145232](http://d.pcs.baidu.com/thumbnail/5f81caec343b538ed88972633b486b7e?fid=2401028482-250528-34732770634220&time=1421924400&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-9WttSeX6QOigw%2BbZ78tKqOCZeeI%3D&rt=sh&expires=2h&r=487673489&sharesign=unknown&size=c710_u500&quality=100)
 
 
+显示顾客订购的订单列表，并把订单中得菜品展示到首页图片上
+
+![qq 20141231145232](http://d.pcs.baidu.com/thumbnail/9944db2bb2fd2c782c88346d44af680b?fid=2401028482-250528-778504280909191&time=1421924400&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-PryZs3M8IF3GfnAeW%2F%2BQThQE5Ag%3D&rt=sh&expires=2h&r=372379822&sharesign=unknown&size=c710_u500&quality=100)
+
+点击餐厅按钮，显示现有餐厅，目前我们只有一家餐厅
+
+![qq 20141231145232](http://d.pcs.baidu.com/thumbnail/56a01a6455a794aea33d4a4a4fd4f8cc?fid=2401028482-250528-1077403044110771&time=1421924400&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-F7o%2FvMF2pqr8JPvRH79N0xHO1JU%3D&rt=sh&expires=2h&r=878576605&sharesign=unknown&size=c710_u500&quality=100)
 
 
 项目所使用到的开源框架主要有：
