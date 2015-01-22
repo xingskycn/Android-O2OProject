@@ -86,8 +86,8 @@ public class SubmitOrderActivity extends BaseActivity implements ISelectValue {
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		
 		buttonOK = (Button) this.findViewById(R.id.submit_order_button_ok);
-		address = (ColumnInputText) this.findViewById(R.id.submit_order_address);
-		phone = (ColumnInputText) this.findViewById(R.id.submit_order_phone);
+		address = (ColumnInputText) this.findViewById(R.id.submit_order_address);	//送餐地址
+		phone = (ColumnInputText) this.findViewById(R.id.submit_order_phone);	//联系电话
 		sumPriceShow = (ColumnText) this.findViewById(R.id.order_sum_price);
 		time = (ColumnInputText) this.findViewById(R.id.submit_order_time);
 		remark = (ColumnInputText)this.findViewById(R.id.submit_order_remark);

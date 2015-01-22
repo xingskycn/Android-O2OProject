@@ -92,13 +92,14 @@ public class RestaurantCommentListAdapter extends BaseAdapter {
         
         holder.content.setText(pingl.getPinglnr());
         
-        if (pingl.isBindQq()) {
-        	holder.bind.setVisibility(View.VISIBLE);
-        	holder.bind.setImageResource(R.drawable.cp_qq);
-        } else if (pingl.isBindWeib()) {
-        	holder.bind.setVisibility(View.VISIBLE);
-        	holder.bind.setImageResource(R.drawable.cp_weibo);
-        } else holder.bind.setVisibility(View.GONE);
+//        if (pingl.isBindQq()) {
+//        	holder.bind.setVisibility(View.VISIBLE);
+//        	holder.bind.setImageResource(R.drawable.cp_qq);
+//        } else if (pingl.isBindWeib()) {
+//        	holder.bind.setVisibility(View.VISIBLE);
+//        	holder.bind.setImageResource(R.drawable.cp_weibo);
+//        } else
+        	holder.bind.setVisibility(View.GONE);
         
         return view;
     }

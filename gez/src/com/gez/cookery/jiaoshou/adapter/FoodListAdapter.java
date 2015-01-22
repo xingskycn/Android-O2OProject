@@ -45,9 +45,7 @@ public class FoodListAdapter extends BaseAdapter {
     
 	// 餐厅ID
 	private String businessId = "30A01E8E-0807-4057-8EB5-ACE1ACEEB15B";
-    Context context;
-   
-	 
+    Context context;	 
     
     public FoodListAdapter(Context context, Fragment mainFragment, List<CaipBasic> foods) {
     	

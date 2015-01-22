@@ -61,8 +61,8 @@ public class MakeOrderActivity extends BaseActivity implements IChangeOrder {
 		
 		mRestaurant = (CantBasic) this.getIntent().getExtras().getSerializable("mRestaurant");
 		
-		deliveryPrice = mRestaurant.getPeisf();
-		lowestPrice = mRestaurant.getQisjg();
+		deliveryPrice = mRestaurant.getPeisf();	//cant表的配送费字段
+		lowestPrice = mRestaurant.getQisjg();	//cant表的起送价格字段
 		
 		//获取所选菜品 一份菜品一个对象 所以有重复 需要重新计算得到选中菜品和数量
 		ArrayList<CaipBasic> listCaip = (ArrayList<CaipBasic>)this.getIntent().getExtras().getSerializable("list");

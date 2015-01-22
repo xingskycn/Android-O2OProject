@@ -5,12 +5,6 @@ import java.util.Date;
 public class Pingl {
 	private String id;
 
-	private String zhangh;
-
-	private boolean bindWeib;
-
-	private boolean bindQq;
-
 	private int zongdccs;
 
 	private int zongdcfs;
@@ -29,30 +23,6 @@ public class Pingl {
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public String getZhangh() {
-		return zhangh;
-	}
-
-	public void setZhangh(String zhangh) {
-		this.zhangh = zhangh;
-	}
-
-	public boolean isBindWeib() {
-		return bindWeib;
-	}
-
-	public void setBindWeib(boolean bindWeib) {
-		this.bindWeib = bindWeib;
-	}
-
-	public boolean isBindQq() {
-		return bindQq;
-	}
-
-	public void setBindQq(boolean bindQq) {
-		this.bindQq = bindQq;
 	}
 
 	public int getZongdccs() {

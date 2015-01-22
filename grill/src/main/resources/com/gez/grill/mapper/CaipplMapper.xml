@@ -4,8 +4,7 @@
 	<!--菜品评论-->
 	<select id="getCommentForDishes" resultType="com.gez.grill.entity.Pingl" parameterType="HashMap">
 		SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY caippl.pinglsj DESC) rownum,
-			caippl.id, guk1.zhangh, CASE WHEN (guk1.weibm='未绑定' OR guk1.weibm='' OR guk1.weibm=null) THEN 0 ELSE 1 END AS bindWeib, 
-			CASE WHEN (guk1.qqh='未绑定' OR guk1.qqh='' OR guk1.qqh=null) THEN 0 ELSE 1 END AS bindQq, guk1.zongdccs, guk1.zongdcfs,
+			caippl.id, guk1.zongdccs, guk1.zongdcfs,
 			guk1.zongdcje, caippl.pingj, caippl.pinglsj,
 			caippl.pinglnr
 		FROM

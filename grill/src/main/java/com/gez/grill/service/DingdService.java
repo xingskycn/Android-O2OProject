@@ -199,7 +199,7 @@ public class DingdService {
 		Dingd dingd = new Dingd();
 		dingd.setId(dingdId);
 		dingd.setBianh(getSerial(cantId));
-		dingd.setDingdzt("1");
+		dingd.setDingdzt("5");
 		dingd.setDianpzt("1");
 		dingd.setGukdh(gukdh);
 		dingd.setGukscdz(gukscdz);
@@ -311,7 +311,7 @@ public class DingdService {
 	public void getHurry(String dingdId) {
 		dingdInstance.getHurry(dingdId);
 		dingdInstance.hurryUp(dingdId);
-		
-		tuisInstance.push2BusinessForHurry(dingdId);
+		//暂时屏蔽推送功能
+//		tuisInstance.push2BusinessForHurry(dingdId);
 	}
 }

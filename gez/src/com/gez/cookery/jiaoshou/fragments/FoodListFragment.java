@@ -103,7 +103,7 @@ public class FoodListFragment extends SherlockFragment {
 					return;
 
 				CaipBasic food = (CaipBasic) lvListViewAdapter.getItem(position - 1);
-				Intent intent = new Intent(FoodListFragment.this.getActivity(), FoodDetailActivity.class);
+				Intent intent = new Intent(FoodListFragment.this.getActivity(), FoodDetailActivity.class);	//点击菜品，跳转到菜品详情页面
 				intent.putExtra("id", food.getId());
 				intent.putExtra("name", food.getCaipmc());
 				
@@ -196,6 +196,7 @@ public class FoodListFragment extends SherlockFragment {
 
 					if (size < RestClient.PAGE_SIZE) {
 						lvListView.setTag(EnmListViewData.LISTVIEW_DATA_FULL);
+						//动态更新ListView
 						lvListViewAdapter.notifyDataSetChanged();
 						lvListView_foot_more.setText(R.string.load_full);
 					} else if (size == RestClient.PAGE_SIZE) {
