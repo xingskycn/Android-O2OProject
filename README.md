@@ -5,6 +5,7 @@ WeChat Public Account Development
 
 这个代码仓库是我的减肥餐O2O项目Android版本开发的代码和apk文件，开发环境是eclipse+ADT+sqlserver
 详细设计文档为公司保密信息，暂未分享
+主项目是gek文件夹，后台服务端是grill文件夹，其余文件夹均作为lib添加
 
 代码包括了Android端和后台业务逻辑的JAVA代码.
 后端数据接口使用了Spring+Mybatis的框架，与数据库进行交互，生成Android端方便调用的JSON
